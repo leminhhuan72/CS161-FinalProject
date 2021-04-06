@@ -1,6 +1,7 @@
 #ifndef _FUNTIONC_H_ 
 #define _FUNTIONC_H_ 
 #include <iostream>
+#include <fstream>
 using namespace std; 
 struct Date {
 	int date, month, year;
@@ -9,8 +10,8 @@ struct Date {
 struct student {
 	int No;
 	char* StudentID;
-	char* First name;
-	char* Last name :
+	char* First_name;
+	char* Last_name;
 	int Gender;
 	Date Date_of_Birth;
 	char* SocialID;
@@ -35,27 +36,7 @@ struct schoolYr {
 	}
 };
 //Add new 1st year students to 1st - year classes.
-void inputAStudent(student& a, ifstream& fin)
-{
-	fin >> No;
-	a.StudentID = new char[100];
-	fin.ignore(100'\n');
-	fin.get(a.StudentID, 100, '\n');
-	a.First_name = new char[100];
-	fin.ignore(100'\n');
-	fin.get(a.First_name, 100, '\n');
-	a.Last_name = new char[100];
-	fin.ignore(100'\n');
-	fin.get(a.Last_name, 100, '\n');
-	int Gender;
-	fin >> Gender;
-	Date Date_of_Birth;
-	inputaDate(a.Date_of_Birth, fin);
-	a.SocialID = new char[100];
-		fin.ignore(100'\n');
-	fin.get(a.SocialId, 100, '\n');
-
-}
-
+void inputAStudent(student& a, ifstream& fin);
+void inputaDate(a.Date_of_Birth, fin);
 
 #endif 
