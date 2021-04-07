@@ -37,6 +37,6 @@ struct schoolYr {
 };
 //Add new 1st year students to 1st - year classes.
 void inputAStudent(student& a, ifstream& fin);
-void inputaDate(a.Date_of_Birth, fin);
+void inputaDate(Date& Date_of_Birth,ifstream& fin);
 
 #endif 

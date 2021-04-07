@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fstream>
 #include "Header.h"
 void inputAStudent(student& a, ifstream& fin)
 {
@@ -18,6 +20,7 @@ Date Date_of_Birth;
 inputaDate(a.Date_of_Birth, fin);
 a.SocialID = new char[100];
 fin.ignore(100, '\n');
-fin.get(a.SocialId, 100, '\n');
+fin.get(a.SocialID, 100, '\n');
 
 }
+void inputaDate(Date& Date_of_Birth,ifstream& fin);
