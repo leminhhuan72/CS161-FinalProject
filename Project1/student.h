@@ -8,7 +8,7 @@ struct student {
 	string StudentID;
 	string First_name;
 	string Last_name;
-	int Gender;
+	bool Gender;
 	Date Date_of_Birth;
 	string SocialID;
 	//input a student 
@@ -16,5 +16,6 @@ struct student {
 };
 void inputAStudent(student& a , ifstream &fin );
 void outputAStudent(student &a , ofstream &fout );
+
 
 #endif 
