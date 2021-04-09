@@ -4,7 +4,10 @@ void inputAStudent(student& a , ifstream &fin ){
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
     getline(fin, a.Last_name);
-    fin>>a.Gender; 
+    string gender ; 
+    getline(fin, gender );
+    if(gender == "male")a.Gender=true ;
+    else a.Gender = false ;  
     inputADate(a.Date_of_Birth,fin);
     getline(fin, a.SocialID);
     
