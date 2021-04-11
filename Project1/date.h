@@ -13,6 +13,6 @@ struct Date {
 void inputADate (Date &a , ifstream & fin );
 void outputADate(Date a ,ofstream &fout );
 
-
+void outputADateToScreen (Date a);
 #endif 
 
