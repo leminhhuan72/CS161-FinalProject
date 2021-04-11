@@ -10,9 +10,6 @@ void inputAStudent(student& a , ifstream &fin ){
     else a.Gender = false ;  
     inputADate(a.Date_of_Birth,fin);
     getline(fin, a.SocialID);
-    
-    
-
 
 }
 void outputAStudent(student &a , ofstream &fout ){
