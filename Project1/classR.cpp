@@ -4,7 +4,7 @@ using namespace std;
 
 void createAClass(string path, classR& _init_, ifstream& fin)
 {
-	
+	cout << "Load class name from file." << endl;
 	fin.open(path);
 	if (!fin.is_open())
 		cout << "Can't load file." << endl;
