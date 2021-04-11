@@ -1,7 +1,7 @@
 #ifndef _SCHOOLYEAR_H_
 #define _SCHOOLYEAR_H_
 #include "classR.h"
-
+#include "date.h"
 
 
 struct schoolYr {
@@ -10,10 +10,9 @@ struct schoolYr {
 	int semester;
 	Date start_day;
 	Date end_day;
-	schoolYr createASchoolYr() {
-
-	}
+	// schoolYr createASchoolYr() {
+	// }
 };
-
+void createNewSchoolYr (schoolYr & a, classR* classLs);
 #endif 
 

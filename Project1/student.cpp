@@ -11,6 +11,8 @@ void inputAStudent(student& a , ifstream &fin )
     else a.Gender = false ;  
     inputADate(a.Date_of_Birth,fin);
     getline(fin, a.SocialID);
+<<<<<<< HEAD
+=======
 }
 void saveAStudent(student& a, ofstream& fout)
 {
@@ -136,6 +138,7 @@ bool changePass(string currentPass, string newPass){
 				{
 					acc[i].pass = newPass;
 					cout << "Your password has changed successfully! ";
+>>>>>>> 14892483cb43ace5a3576d5c673a08e6e1c0a88b
 
 				}
 			}
