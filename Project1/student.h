@@ -2,7 +2,6 @@
 #define _STUDENT_H_ 
 #include "date.h"
 
-
 struct student 
 {
 	int No;
