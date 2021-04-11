@@ -15,6 +15,6 @@ struct student
 	//input a student 	
 };
 void inputAStudent(student& a , ifstream &fin );
-void outputAStudent(student &a , ofstream &fout );
+void saveAStudent(student &a , ofstream &fout );
 
 #endif 
