@@ -1,5 +1,5 @@
 #include "Header.h"
-
+#include "classR.h"
 /*
 try to figure out and write all functions of 
 Viet Hoang : Student 
@@ -16,6 +16,14 @@ minh huan : semester
 */
 int main()
 {
-
-
+	ifstream fin;
+	ofstream fout;
+	classR apcs1, apcs2, clc1, clc2, vp;
+	//createAClass(apcs1, fin);
+	createAClass("20APCS2.txt", apcs2, fin);
+	
+	//createAClass(clc1, fin);
+	//createAClass(clc2, fin);
+	//createAClass(vp, fin);
+	return 0;
 }
