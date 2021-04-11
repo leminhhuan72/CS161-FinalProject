@@ -6,7 +6,7 @@
 
 struct classR {
 	//Add new 1st year students to 1st-year classes.
-    
+	string name;
 	int num_of_students;
 	student* member;   // class 20CTT1 ; 20CTT1.member[]
 };

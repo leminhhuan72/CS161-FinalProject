@@ -17,7 +17,6 @@ void createAClass(string path, classR& _init_, ifstream& fin)
 	}
 	fin.close();
 }
-
 void addStudent2Class(string path, classR& _this_class_, ifstream& fin)
 {
 	cout << "Add student to class " << path << endl;
@@ -31,4 +30,4 @@ void addStudent2Class(string path, classR& _this_class_, ifstream& fin)
 		cout << "Add student to class successfully." << endl;
 	}
 	fin.close();
-}
+
