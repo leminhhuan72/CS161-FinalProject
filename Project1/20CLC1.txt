@@ -1,0 +1,16 @@
+20CLC1
+2
+1
+20120606
+Lam
+Dinh
+Female
+12
+08
+2002
+12123355
+2
+20120202
+Khanh
+Nguyen
+Male

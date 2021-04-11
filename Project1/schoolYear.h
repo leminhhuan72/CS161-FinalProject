@@ -13,6 +13,6 @@ struct schoolYr {
 	// schoolYr createASchoolYr() {
 	// }
 };
-void createNewSchoolYr (schoolYr & a, classR* classLs , ifstream & fin );
+void createNewSchoolYr (schoolYr & a, classR* classLs);
 #endif 
 

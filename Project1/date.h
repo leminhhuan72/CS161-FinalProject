@@ -10,9 +10,9 @@ using namespace std ;
 struct Date {
 	int date, month, year;
 };
-void inputADate (Date &a , ifstream & fin );
+void inputADate (Date &a , istream & fin );
 void outputADate(Date a ,ofstream &fout );
 
-
+void outputADateToScreen (Date a);
 #endif 
 
