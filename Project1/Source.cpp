@@ -1,5 +1,5 @@
 #include "Header.h"
-#include "classR.h"
+
 /*
 try to figure out and write all functions of 
 Viet Hoang : Student 

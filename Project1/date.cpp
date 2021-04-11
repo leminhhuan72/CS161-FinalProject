@@ -1,9 +1,9 @@
 #include "date.h"
-void inputADate (Date &a , ifstream & fin )
-{
+void inputADate (Date &a , ifstream & fin ){
     fin>>a.date ; 
     fin>>a.month ;
     fin>>a.year ; 
+
 }
 void outputADate (Date a, ofstream& fout)
 {
