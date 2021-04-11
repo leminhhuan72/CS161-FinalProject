@@ -12,5 +12,6 @@ struct classR {
 };
 
 void createAClass (string path, classR & _init_, ifstream & fin);
+void addStudent2Class(string path, classR& _this_class_, ifstream& fin);
 #endif 
 
