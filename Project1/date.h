@@ -8,10 +8,11 @@ using namespace std ;
 
 
 struct Date {
-	int date, month, year;
+	int date, month, nam;
 };
 void inputADate (Date &a , ifstream & fin );
 void outputADate(Date a ,ofstream &fout );
+
 
 
 #endif 
