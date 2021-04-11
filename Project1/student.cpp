@@ -1,5 +1,6 @@
 #include "student.h"
-void inputAStudent(student& a , ifstream &fin ){
+void inputAStudent(student& a , ifstream &fin )
+{
     fin>>a.No ; 
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
@@ -10,14 +11,10 @@ void inputAStudent(student& a , ifstream &fin ){
     else a.Gender = false ;  
     inputADate(a.Date_of_Birth,fin);
     getline(fin, a.SocialID);
-    
-    
-
-
 }
-void outputAStudent(student &a , ofstream &fout ){
+void outputAStudent(student &a , ofstream &fout )
+{
     fout << a.No <<'\n'<<a.StudentID<<'\n'<<a.First_name<<' '<<a.Last_name<<'\n'<<a.Gender<<'\n';
     outputADate(a.Date_of_Birth,fout);
-    fout<<a.SocialID<<'\n';
-    
+    fout<<a.SocialID<<'\n';   
 }
