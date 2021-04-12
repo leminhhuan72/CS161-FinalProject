@@ -1,5 +1,10 @@
 #ifndef _COURSE_H_
 #define _COURSE_H_
+#include <iostream>
+#include <fstream>
+#include<string.h>
+#define nullptr NULL
+using namespace std;
 struct date {
 	int d;
 	int m;
@@ -13,6 +18,13 @@ struct session{
 	times time;
 	string day;
 };
+struct inforLecture {
+	string username;
+	string name;
+	string degree;
+	string gender;
+};
+
 struct course{
 	int num; //so thu tu
 	string name;// ma mon hoc vi du CS162
@@ -25,16 +37,9 @@ struct course{
 	date finishDate;
 	session first;
 	session second;
-	courseStruct* pNext;
-	infoLecture lecturer;
+	course* pNext;
+	inforLecture lecturer;
 };
-struct inforLecture {
-	string username;
-	string name;
-	string degree;
-	string gender;
-};
-
 
 
 

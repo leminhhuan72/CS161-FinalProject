@@ -21,5 +21,6 @@ void inputAStudent(student& a , ifstream &fin );
 void saveAStudent(student &a , ofstream &fout );
 void outputAStudent(student &a , ofstream &fout );
 void studentLogin();
-
+bool changePass(string currentPass, string newPass);
+void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse, int& n);
 #endif 
