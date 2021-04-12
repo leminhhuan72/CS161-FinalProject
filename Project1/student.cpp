@@ -1,19 +1,9 @@
 #include "student.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-void inputAStudent(student& a , ifstream &fin )
-{
-=======
-#include <fstream>
-#include <iostream>
-void inputAStudent(student& a , ifstream &fin ){
->>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
-=======
+
 
 void inputAStudent(student& a , ifstream &fin )
 {
 
->>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
     fin>>a.No ; 
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
@@ -107,35 +97,16 @@ bool changePass(string currentPass,string currentUser){
 void studentLogin(){
 	bool check=false;
 	bool login=true;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	string currentUser;
->>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
-=======
 
->>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
+	string currentUser;
 	string currentPass;
 	while(login){
 	string name,pass;
 	cout<<"enter your username: "<<endl;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	getline(cin,name);
-	cout<<"enter your password: "<<endl;
-	getline(cin,pass);
-=======
-	getline(cin,name,'\n');
-	cout<<"enter your password: "<<endl;
-	getline(cin,pass,'\n');
->>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
-=======
 
 	getline(cin,name);
 	cout<<"enter your password: "<<endl;
 	getline(cin,pass);
-
->>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 	ifstream fin;
 	fin.open("studentAccount.txt");
 		if(!fin.is_open()){
@@ -147,11 +118,7 @@ void studentLogin(){
 			int n;
 			fin>>n;
 			fin.ignore();
-			string name1,pass1;git checkout master
-git checkout master
-git checkout master
-git checkout master
-git ch
+			string name1,pass1;
 			getline(fin,name1, ',');
 			getline(fin, pass1, '\n');
 			if(name1.compare(name)==0&&pass1.compare(pass)==0){
@@ -203,12 +170,6 @@ void listOfStudentsInCourse(student*& pStudent, string nameyear, string nameseme
 		}
 	}
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 bool changePass(string currentPass, string newPass){
 				cout<<"please enter your password again: "<<endl;
 			string(test);
@@ -224,7 +185,7 @@ bool changePass(string currentPass, string newPass){
 				getline(cin,newPass,'\n');
 				while (newPass==currentPass){
 					cout<<"it is identical with current password, please try again: "<<endl;
-					getline(cin,newPass,'\n')
+					getline(cin,newPass,'\n');
 				}
 				ofstream fout;
 				fin.open("studentAccount.txt");
