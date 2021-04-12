@@ -1,10 +1,12 @@
 #ifndef _STUDENT_H_ 
 #define _STUDENT_H_ 
 #include "date.h"
+
 struct accountInfo{
 	string name;
 	string pass;
 };
+
 
 struct student 
 {
