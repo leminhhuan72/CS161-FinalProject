@@ -1,7 +1,8 @@
 #include "student.h"
-#include <fstream>
-#include <iostream>
-void inputAStudent(student& a , ifstream &fin ){
+
+void inputAStudent(student& a , ifstream &fin )
+{
+
     fin>>a.No ; 
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
@@ -12,16 +13,17 @@ void inputAStudent(student& a , ifstream &fin ){
     else a.Gender = false ;  
     inputADate(a.Date_of_Birth,fin);
     getline(fin, a.SocialID);
-    
-    
-
-
 }
-void outputAStudentToFile(student &a , ofstream &fout ){
-    fout << a.No <<'\n'<<a.StudentID<<'\n'<<a.First_name<<' '<<a.Last_name<<'\n'<<a.Gender<<'\n';
-    outputADate(a.Date_of_Birth,fout);
-    fout<<a.SocialID<<'\n';
-    
+void saveAStudent(student& a, ofstream& fout)
+{
+    fout << "No:" << '\t' << a.No << endl;
+    fout << "Student ID:" << '\t' << a.StudentID << endl;
+    fout << "First Name:" << '\t' << a.First_name << endl;
+    fout << "Last Name:" << '\t' << a.Last_name << endl;
+    fout << "Gender:" << '\t' << a.Gender << endl;
+    fout << "Date of birth:" << '\t';
+    outputADate(a.Date_of_Birth, fout);
+    fout << "Social ID:" << '\t' << a.SocialID << endl;
 }
 void outputAStudent(student &a ){
     cout << a.No <<'\n'<<a.StudentID<<'\n'<<a.First_name<<' '<<a.Last_name<<'\n'<<a.Gender<<'\n';
@@ -94,14 +96,16 @@ bool changePass(string currentPass,string currentUser){
 void studentLogin(){
 	bool check=false;
 	bool login=true;
-	string currentUser;
+
 	string currentPass;
 	while(login){
 	string name,pass;
 	cout<<"enter your username: "<<endl;
-	getline(cin,name,'\n');
+
+	getline(cin,name);
 	cout<<"enter your password: "<<endl;
-	getline(cin,pass,'\n');
+	getline(cin,pass);
+
 	ifstream fin;
 	fin.open("studentAccount.txt");
 		if(!fin.is_open()){
@@ -113,7 +117,11 @@ void studentLogin(){
 			int n;
 			fin>>n;
 			fin.ignore();
-			string name1,pass1;
+			string name1,pass1;git checkout master
+git checkout master
+git checkout master
+git checkout master
+git ch
 			getline(fin,name1, ',');
 			getline(fin, pass1, '\n');
 			if(name1.compare(name)==0&&pass1.compare(pass)==0){
@@ -164,5 +172,67 @@ void listOfStudentsInCourse(student*& pStudent, string nameyear, string nameseme
 			i++;
 		}
 	}
+}
+
+
+bool changePass(string currentPass, string newPass){
+				cout<<"please enter your password again: "<<endl;
+			string(test);
+			cin.ignore();
+			getline(cin,test,'\n');
+			if (name1.compare(currentPass)!=0){
+				cout<<"wrong password, please try again"<<endl;
+				return false;
+			}
+			else{
+				cout<<"enter your new pass: "<<endl;
+				string newPass;
+				getline(cin,newPass,'\n');
+				while (newPass==currentPass){
+					cout<<"it is identical with current password, please try again: "<<endl;
+					getline(cin,newPass,'\n')
+				}
+				ofstream fout;
+				fin.open("studentAccount.txt");
+				int n1;
+				if (fin.is_open()){
+					
+					fin>>n1;
+					accountInfo *acc;
+					acc = new accountInfo[n1];
+					for (int i = 0; i < n1; i++) {
+
+			        getline(fin, acc[i].name, ',');
+			        getline(fin, acc[i].pass, '\n');
+			        if (acc[i].name == currentUser && acc[i].pass == currentPass)
+				{
+					acc[i].pass = newPass;
+					cout << "Your password has changed successfully! ";
+
+				}
+			}
+		
+		fout.open("studentAccount.txt");
+			if (fout.is_open()) {
+			fout << n1;
+			for (int i = 0; i < n1; i++) {
+				fout << acc[i].name << ',';
+				fout << acc[i].pass << '\n';
+			}
+			fout.close();
+		}
+		else {
+			cout << "sorry cannot open file";
+			return false;
+		}
+			else {
+			cout << "sorry cannot open file";
+			return false;
+		}
+	}
+		fin.close();
+		delete []acc;
+		return true;
+}
 }
 

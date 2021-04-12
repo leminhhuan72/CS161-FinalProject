@@ -7,7 +7,8 @@
 using namespace std ; 
 
 
-struct Date {
+struct Date 
+{
 	int date, month, year;
 };
 void inputADate (Date &a , ifstream & fin );
