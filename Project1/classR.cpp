@@ -31,4 +31,8 @@ void addStudent2Class(string path, classR& _this_class_, ifstream& fin)
 		cout << "Add student to class successfully." << endl;
 	}
 	fin.close();
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 8b959cbe49144a8d72e02a6fb74940b293f04905

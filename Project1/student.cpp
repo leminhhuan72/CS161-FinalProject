@@ -52,7 +52,11 @@ void studentLogin(){
 			int n;
 			fin>>n;
 			fin.ignore();
-			string name1,pass1;
+			string name1,pass1;git checkout master
+git checkout master
+git checkout master
+git checkout master
+git ch
 			getline(fin,name1, ',');
 			getline(fin, pass1, '\n');
 			if(name1.compare(name)==0&&pass1.compare(pass)==0){
@@ -123,11 +127,12 @@ bool changePass(string currentPass, string newPass){
 				}
 				ofstream fout;
 				fin.open("studentAccount.txt");
+				int n1;
 				if (fin.is_open()){
-					int n1;
+					
 					fin>>n1;
 					accountInfo *acc;
-					acc= new accountInfo[n1];
+					acc = new accountInfo[n1];
 					for (int i = 0; i < n1; i++) {
 
 			        getline(fin, acc[i].name, ',');
