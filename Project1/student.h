@@ -1,6 +1,11 @@
 #ifndef _STUDENT_H_ 
 #define _STUDENT_H_ 
 #include "date.h"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 struct accountInfo{
 	string name;
 	string pass;

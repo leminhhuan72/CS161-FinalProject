@@ -1,5 +1,6 @@
 #include "student.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 void inputAStudent(student& a , ifstream &fin )
 {
 =======
@@ -7,6 +8,12 @@ void inputAStudent(student& a , ifstream &fin )
 #include <iostream>
 void inputAStudent(student& a , ifstream &fin ){
 >>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
+=======
+
+void inputAStudent(student& a , ifstream &fin )
+{
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
     fin>>a.No ; 
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
@@ -101,13 +108,18 @@ void studentLogin(){
 	bool check=false;
 	bool login=true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	string currentUser;
 >>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
+=======
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 	string currentPass;
 	while(login){
 	string name,pass;
 	cout<<"enter your username: "<<endl;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	getline(cin,name);
 	cout<<"enter your password: "<<endl;
@@ -117,6 +129,13 @@ void studentLogin(){
 	cout<<"enter your password: "<<endl;
 	getline(cin,pass,'\n');
 >>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
+=======
+
+	getline(cin,name);
+	cout<<"enter your password: "<<endl;
+	getline(cin,pass);
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 	ifstream fin;
 	fin.open("studentAccount.txt");
 		if(!fin.is_open()){
@@ -185,6 +204,11 @@ void listOfStudentsInCourse(student*& pStudent, string nameyear, string nameseme
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
 bool changePass(string currentPass, string newPass){
 				cout<<"please enter your password again: "<<endl;
 			string(test);
@@ -245,6 +269,10 @@ bool changePass(string currentPass, string newPass){
 		return true;
 }
 }
+<<<<<<< HEAD
 =======
 
 >>>>>>> 80d4cb5b9fbee57faadee5f243047c20ccf607c4
+=======
+
+>>>>>>> 031adafa7adee606b3a9ff9e086f298923633043
