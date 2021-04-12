@@ -54,17 +54,17 @@ void courseRegis(course*& totalCourse) // 7
 		cout << "  Gender: "<<endl;
 		getline(cin, cur->lecturer.gender, '\n');
 		cout << "Started Date(date): "<<endl;
-		cin >> cur->startDate.d;
+		cin >> cur->startDate.date;
 		cout << "Started Date(month): "<<endl;
-		cin >> cur->startDate.m;
+		cin >> cur->startDate.month;
 		cout << "Started Date(year): "<<endl;
-		cin >> cur->startDate.y;
+		cin >> cur->startDate.year;
 		cout << "Finished Date(date): "<<endl;
-		cin >> cur->finishDate.d;
+		cin >> cur->finishDate.date;
 		cout << "Finished Date(month): "<<endl;
-		cin >> cur->finishDate.m;
+		cin >> cur->finishDate.month;
 		cout << "Finished Date(year): "<<endl;
-		cin >> cur->finishDate.y;
+		cin >> cur->finishDate.year;
 		cout << "Started Hour(hour): "<<endl;
 		cin >> cur->startTime.hour;
 		cout << "Started Hour(minute): "<<endl;
@@ -96,7 +96,7 @@ void courseRegis(course*& totalCourse) // 7
 		count = 1;
 		cur->num = count;
 		cur->name = name;
-	cout << "Full name: "<<endl;
+	  cout << "Full name: "<<endl;
 		getline(cin,cur->fullname,'\n');
 		cout << "Classroom: "<<endl;
 		cin.ignore();
@@ -115,17 +115,17 @@ void courseRegis(course*& totalCourse) // 7
 		cout << "  Gender: "<<endl;
 		getline(cin, cur->lecturer.gender, '\n');
 		cout << "Started Date(date): "<<endl;
-		cin >> cur->startDate.d;
+		cin >> cur->startDate.date;
 		cout << "Started Date(month): "<<endl;
-		cin >> cur->startDate.m;
+		cin >> cur->startDate.month;
 		cout << "Started Date(year): "<<endl;
-		cin >> cur->startDate.y;
+		cin >> cur->startDate.year;
 		cout << "Finished Date(date): "<<endl;
-		cin >> cur->finishDate.d;
+		cin >> cur->finishDate.date;
 		cout << "Finished Date(month): "<<endl;
-		cin >> cur->finishDate.m;
+		cin >> cur->finishDate.month;
 		cout << "Finished Date(year): "<<endl;
-		cin >> cur->finishDate.y;
+		cin >> cur->finishDate.year;
 		cout << "Started Hour(hour): "<<endl;
 		cin >> cur->startTime.hour;
 		cout << "Started Hour(minute): "<<endl;
@@ -155,9 +155,4 @@ void courseRegis(course*& totalCourse) // 7
 		cur = nullptr;
 		totalCourse->pNext = nullptr;
 	}
-}
-int main(){
-	course* test= new course;
-	courseRegis(test);
-	return 0;
 }

@@ -1,15 +1,11 @@
 #ifndef _COURSE_H_
 #define _COURSE_H_
-#include <iostream>
-#include <fstream>
-#include<string.h>
+
+#include "date.h"
 #define nullptr NULL
 using namespace std;
-struct date {
-	int d;
-	int m;
-	int y;
-};
+
+
 struct times {
 	int minu;
 	int hour;
@@ -33,8 +29,8 @@ struct course{
 	times finishTime;
 	string classroom; //phong hoc
 	string clas; // lop hoc vi du 20ctt1, viet class khong duoc nen dung clas :(
-	date startDate;
-	date finishDate;
+	Date startDate;
+	Date finishDate;
 	session first;
 	session second;
 	course* pNext;
