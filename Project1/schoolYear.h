@@ -14,6 +14,7 @@ struct schoolYr {
 
 	}
 };
+void createSchoolYr (schoolYr & _init_, ifstream & fin  );
 
 #endif 
 
