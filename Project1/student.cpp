@@ -94,7 +94,99 @@ bool changePass(string currentPass,string currentUser){
 		return true;
 }
 }
-void studentLogin(){
+void studentLogin()
+{
+	bool check=false;
+	bool login=true;
+
+	string currentUser;
+	string currentPass;
+	while(login)
+{
+	string name,pass;
+	cout<<"enter your username: "<<'\n';
+	getline(cin,name,'\n');
+	cout<<"enter your password: "<<endl;
+	getline(cin,pass);
+	ifstream fin;
+	fin.open("studentAccount.txt");
+		if(!fin.is_open())
+		{
+			cout<<"No data on student accounts"<<endl;
+			return;
+		}
+		else
+		{
+			string name1,pass1;
+
+		while(!fin.eof()&&getline(fin,name1, ',')&&getline(fin, pass1,',')&&!check)
+		{
+			if(name1.compare(name)==0&&pass1.compare(pass)==0){
+				
+				check =true;
+				login=false;
+				currentPass=pass;
+				currentUser=name;
+				
+			}
+		}
+		
+	    }
+		if (!check) cout<<"wrong username or password ,do you want to try again (Y\\n)"<<'\n';
+		string hook ;
+		getline(cin,hook);
+		if(hook=="n"||hook=="N"||hook == "no"||hook == "NO"||hook == "No")login=false;
+
+
+   fin.close();
+}
+while (check)
+   {
+	//cac thao tac ma student thuc hien khi login thanh cong
+	bool notRest = true;
+	while (notRest){
+	cout<<"Enter 0 to change password "<<'\n';
+	cout<<"Enter 9 to exit "<<'\n';
+	int x;
+	cin>>x;
+
+	switch(x){
+		case 0://change password
+		bool a=changePass(currentPass,currentUser);
+		while (!a){
+			a=changePass(currentPass,currentUser);
+		}
+		break;
+
+		case 9: return ; 
+		}
+				}
+	}
+	
+
+}
+//void enrollCourse(int&count, ifstream&fin,string nameyear,string semester,ofstream &fout)
+void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse) 
+{
+	ifstream fin;
+	fin.open( nameyear + "-" + namesemester + "-" + namecourse+".txt");
+	if (!fin.is_open()) {
+		cout << "can not open file ,please enter any character to back";
+		string u;
+		cin >> u;
+		return;
+	}
+	else{
+		int i=0;
+		pStudent = new student[1000];
+		while (!fin.eof()){
+			inputAStudent(pStudent[i],fin);
+			cout<<pStudent[i].First_name<<" "<<pStudent[i].Last_name<<endl;
+			i++;
+		}
+	}
+}
+void staffLogin(){
 	bool check=false;
 	bool login=true;
 
@@ -108,9 +200,9 @@ void studentLogin(){
 	cout<<"enter your password: "<<endl;
 	getline(cin,pass);
 	ifstream fin;
-	fin.open("studentAccount.txt");
+	fin.open("staffAccount.txt");
 		if(!fin.is_open()){
-			cout<<"No data on student accounts"<<endl;
+			cout<<"No data on staff accounts"<<endl;
 			return;
 		}
 		else{
@@ -150,23 +242,3 @@ while (check){
 				}
 			}
 		}
-//void enrollCourse(int&count, ifstream&fin,string nameyear,string semester,ofstream &fout)
-void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse) {
-	ifstream fin;
-	fin.open( nameyear + "-" + namesemester + "-" + namecourse+".txt");
-	if (!fin.is_open()) {
-		cout << "can not open file ,please enter any character to back";
-		string u;
-		cin >> u;
-		return;
-	}
-	else{
-		int i=0;
-		pStudent = new student[1000];
-		while (!fin.eof()){
-			inputAStudent(pStudent[i],fin);
-			cout<<pStudent[i].First_name<<" "<<pStudent[i].Last_name<<endl;
-			i++;
-		}
-	}
-}

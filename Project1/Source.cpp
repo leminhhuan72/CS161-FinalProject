@@ -1,5 +1,4 @@
-#include "Header.h"
-#include "classR.h"
+#include "login.h"
 /*
 try to figure out and write all functions of 
 Viet Hoang : Student 
@@ -18,19 +17,8 @@ int main()
 {
 	ifstream fin;
 	ofstream fout;
+	/*
 	classR apcs1, apcs2, clc1, clc2, vp;
-<<<<<<< HEAD
-	createAClass("20APCS1", apcs1, fin);
-	addStudent2Class("20APCS1.txt", apcs2, fin);
-	createAClass("20APCS2.txt", apcs2, fin);
-	addStudent2Class("20APCS2.txt", apcs2, fin);
-	createAClass("20CLC1", clc1, fin);
-	addStudent2Class("20CLC1.txt", apcs2, fin);
-	createAClass("20CLC2", clc1, fin);
-	addStudent2Class("20CLC2.txt", apcs2, fin);
-	createAClass("20VP", vp, fin);
-	addStudent2Class("20VP.txt", apcs2, fin);
-=======
 	createAClass("20APCS1.txt",apcs1, fin);
 	addStudent2Class("20APCS2.txt", apcs1, fin);
 	createAClass("20APCS2.txt", apcs2, fin);
@@ -41,6 +29,8 @@ int main()
 	addStudent2Class("20CLC2", clc1, fin);
 	createAClass("20VP", vp, fin);
 	addStudent2Class("20VP", clc1, fin);
->>>>>>> 8b959cbe49144a8d72e02a6fb74940b293f04905
+
+	*/
+    login();
 	return 0;
 }
