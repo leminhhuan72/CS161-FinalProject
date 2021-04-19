@@ -36,6 +36,8 @@ struct course{
 	course* pNext;
 	inforLecture lecturer;
 };
+void courseRegis(course*& totalCourse);
+
 
 
 
