@@ -153,7 +153,7 @@ while (check){
 //void enrollCourse(int&count, ifstream&fin,string nameyear,string semester,ofstream &fout)
 void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse) {
 	ifstream fin;
-	fin.open( nameyear + "-" + namesemester + "-" + namecourse+".txt");
+	fin.open( nameyear + '-' + namesemester + '-' + namecourse+".txt");
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to back";
 		string u;
