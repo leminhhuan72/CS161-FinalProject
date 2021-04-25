@@ -22,7 +22,35 @@ void login()
     }
     else if(n==2)
     {
-      staffLogin();
+      if(staffLogin())
+      {
+        cout<<"WHICH TASK YOU WANT TO DO ?\n";
+        cout<<"TYPE 1 TO CREATE A NEW SCHOOL YEAR \n";
+        cout<<"2 TO CREATE A CLASS\n";
+        cout<<"3 TO ADD STUDENTS TO A CLASS\n";
+        int n; 
+        cin>>n ;
+        string PATH ; 
+        ofstream fin (PATH + ".txt" ,ios::app);
+        switch (n)
+        {
+        case 1:
+          
+          {
+             schoolYr _init_;
+             createSchoolYr(_init_, fin);
+             break;
+          }
+        
+        default:
+          cout<<"Please input right numbers";
+          break;
+        }
+      }
+      else 
+      {
+        cout<<"GOOD BYE!!!!!";
+      }
     }
     
   

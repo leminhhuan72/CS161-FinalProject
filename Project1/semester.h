@@ -2,11 +2,12 @@
 #define _SEMESTER_H_ 
 #include "schoolYear.h"
 #include "course.h"
+#include "date.h"
 
 
 struct semester { 
     int No ;
-    schoolYr year_of_this_semester ; 
+    schoolYr* year_of_this_semester ; 
     Date start_date ; 
     Date end_date ;
     course * list_of_course ;

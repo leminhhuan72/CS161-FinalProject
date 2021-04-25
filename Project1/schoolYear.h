@@ -1,20 +1,17 @@
-#ifndef _SCHOOLYEAR_H_
-#define _SCHOOLYEAR_H_
+#ifndef _SCHOOLYEAR_H_ 
+#define _SCHOOLYEAR_H 
 #include "classR.h"
+#include "date.h"
+#include "semester.h"
 
-
-
-struct schoolYr {
-	int num_of_class; 
-	classR* classLs;
-	int semester;
-	Date start_day;
+struct schoolYr{
+   string schoolYrNo ; 
+   int num_of_class;
+   classR*  classLs;
+   semester*  semester_of_this_year;
+	Date  start_day;
 	Date end_day;
-	schoolYr createASchoolYr() {
-
-	}
 };
-void createSchoolYr (schoolYr & _init_, ifstream & fin  );
 
-#endif 
-
+void createSchoolYr (schoolYr & _init_, ofstream & fout);
+#endif

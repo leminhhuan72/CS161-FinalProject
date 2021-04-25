@@ -2,33 +2,38 @@
 #include <iostream>
 using namespace std;
 
-void createAClass(string path, classR& _init_, ifstream& fin)
+void createAClass(classR& _init_, schoolYr _this_year_)
 {
-	cout << "Load class name from file." << endl;
-	fin.open(path);
-	if (!fin.is_open())
-		cout << "Can't load file." << endl;
-	else
-	{
-		getline(fin, _init_.name);
-		fin >> _init_.num_of_students;
-		_init_.member = new student[_init_.num_of_students];
-		cout << "Load file successfully." << endl;
-	}
-	fin.close();
+ cout<<"Type the name of the class\n";
+ getline(cin,_init_.name);
+ cout<<"How many students are there in this class\n?";
+ cin>>_init_.num_of_students;
+ _init_.schoolYear = &_this_year_;
 }
 
-void addStudent2Class(string path, classR& _this_class_, ifstream& fin)
+void inputAClass (classR& dest,ifstream & fin )
 {
-	cout << "Add student to class " << path << endl;
-	fin.open(path);
-	if (!fin.is_open())
-		cout << "Can't load file." << endl;
-	else
+	cout<<"What is the path of the file containing information of all students ? ";
+	string path ; 
+	getline (cin,path);
+	fin.open(path);  
+	
+
+	if(!fin.eof())
 	{
-		for (int i = 0; i < _this_class_.num_of_students; i++)
-			inputAStudent(_this_class_.member[i], fin);
-		cout << "Add student to class successfully." << endl;
+		dest.member = new student[dest.num_of_students];
+         for(int i= 0 ; i < dest.num_of_students;++i)
+	    {
+		fin>>dest.member[i].No;
+		fin.get();
+		getline(fin,dest.member[i].StudentID,',');
+		getline(fin,dest.member[i].First_name,',');
+		getline(fin,dest.member[i].Last_name,',');
+		
+		// 1,20125033,Le,Minh Huan ,1,24,05,2002,221502615
+	     }
 	}
-	fin.close();
+	else cout<<"cant not open file \n";
+	
+
 }

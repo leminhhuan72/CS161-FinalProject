@@ -123,6 +123,7 @@ void studentLogin()
 		{
 			if(name1.compare(name)==0&&pass1.compare(pass)==0){
 				
+				cout<< "LOGIN SUCCESSFULLY!\n";
 				check =true;
 				login=false;
 				currentPass=pass;
@@ -146,21 +147,23 @@ while (check)
 	bool notRest = true;
 	while (notRest){
 	cout<<"Enter 0 to change password "<<'\n';
-	cout<<"Enter 9 to exit "<<'\n';
+	cout<<"Enter 9 to logout  "<<'\n';
 	int x;
 	cin>>x;
-
+   bool a = true ; 
 	switch(x){
 		case 0://change password
-		bool a=changePass(currentPass,currentUser);
-		while (!a){
+		 a=changePass(currentPass,currentUser);
+		while (!a)
+		{
 			a=changePass(currentPass,currentUser);
 		}
 		break;
-
-		case 9: return ; 
+        case 9: cout<<"logout successfully";
+		break; 
+		default : return ; 
 		}
-				}
+	 }
 	}
 	
 
@@ -186,59 +189,78 @@ void listOfStudentsInCourse(student*& pStudent, string nameyear, string nameseme
 		}
 	}
 }
-void staffLogin(){
-	bool check=false;
-	bool login=true;
+bool staffLogin()
+{
+	
+	bool login=false;
 
 	string currentUser;
 	string currentPass;
-	while(login){
+	while(!login)
+  {
 	string name,pass;
-	cout<<"enter your username: "<<endl;
-
-	getline(cin,name);
+	cout<<"enter your username: "<<'\n';
+	getline(cin,name,'\n');
 	cout<<"enter your password: "<<endl;
 	getline(cin,pass);
 	ifstream fin;
 	fin.open("staffAccount.txt");
-		if(!fin.is_open()){
-			cout<<"No data on staff accounts"<<endl;
-			return;
+		if(!fin.is_open())
+		{
+			cout<<"No data on staffs accounts"<<endl;
+			return false;
 		}
-		else{
-		while(!fin.eof()){
-			int n;
-			fin>>n;
-			fin.ignore();
+		else
+		{
 			string name1,pass1;
-			getline(fin,name1, ',');
-			getline(fin, pass1, '\n');
+
+		while(!fin.eof()&&getline(fin,name1, ',')&&getline(fin, pass1,',')&&!login)
+		{
 			if(name1.compare(name)==0&&pass1.compare(pass)==0){
-				check =true;
-				login=false;
+				
+				cout<< "LOGIN SUCCESSFULLY!\n";
+				login=true;
 				currentPass=pass;
 				currentUser=name;
+				
 			}
 		}
+		
+	    }
+		 fin.close();
+		if (!login) cout<<"wrong username or password ,do you want to try again (Y\\n)"<<'\n';
+		string hook ;
+		getline(cin,hook);
+		if(hook=="n"||hook=="N"||hook == "no"||hook == "NO"||hook == "No")return false;
 	}
-
-if (!check) cout<<"wrong username or password, please try again";
-fin.close();
+	return true ;
 }
-while (check){
-	//cac thao tac ma student thuc hien khi login thanh cong
+/*
+while (check)
+   {
+	//cac thao tac ma staff thuc hien khi login thanh cong
 	bool notRest = true;
 	while (notRest){
+	cout<<"Enter 0 to change password "<<'\n';
+	cout<<"Enter 9 to logout "<<'\n';
 	int x;
 	cin>>x;
+    bool a = true ; 
 	switch(x){
 		case 0://change password
-		bool a=changePass(currentPass,currentUser);
+		 a=changePass(currentPass,currentUser);
 		while (!a){
-			a=changePass(currentPass,currentUser);
+		a=changePass(currentPass,currentUser);
 		}
 		break;
+
+		case 9: cout<<"logout successfully";
+		break;
+		default: return ;
 		}
 				}
-			}
-		}
+	}
+	
+
+}
+*/

@@ -13,7 +13,7 @@ struct Date
 };
 void inputADate (Date &a , istream & fin );
 void outputADate(Date a ,ofstream &fout );
-
+void inputADateFromConsole(Date &a ,string dateA);
 void outputADateToScreen (Date a);
 #endif 
 

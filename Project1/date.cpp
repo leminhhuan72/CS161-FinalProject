@@ -5,6 +5,13 @@ void inputADate (Date &a , istream &fin )
     fin>>a.month ;
     fin>>a.year ; 
 }
+void inputADateFromConsole(Date &a ,string dateA)
+{
+    cout<<"Please input " <<dateA <<"(ddMMyyyy)\n" ; 
+    cin>>a.date>>a.month>>a.year;
+    
+
+}
 void outputADate (Date a, ofstream& fout)
 {
     fout<<a.date<<" "<<a.month<<' '<<a.year<<endl; 
