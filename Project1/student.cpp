@@ -105,9 +105,12 @@ void studentLogin()
 {
 	string name,pass;
 	cout<<"enter your username: "<<'\n';
+	
 	getline(cin,name,'\n');
-	cout<<"enter your password: "<<endl;
+
+	cout<<"enter your password: "<<'\n';
 	getline(cin,pass);
+	
 	ifstream fin;
 	fin.open("studentAccount.txt");
 		if(!fin.is_open())
@@ -196,12 +199,18 @@ bool staffLogin()
 
 	string currentUser;
 	string currentPass;
+	
 	while(!login)
   {
 	string name,pass;
-	cout<<"enter your username: "<<'\n';
+	
+	cout<<"enter your username:"<<'\n';
+    
+	
 	getline(cin,name,'\n');
-	cout<<"enter your password: "<<endl;
+	
+	cout<<"enter your password: "<<'\n';
+
 	getline(cin,pass);
 	ifstream fin;
 	fin.open("staffAccount.txt");

@@ -1,7 +1,7 @@
 #ifndef _COURSE_H_
 #define _COURSE_H_
 
-#include "date.h"
+#include "student.h"
 #define nullptr NULL
 using namespace std;
 

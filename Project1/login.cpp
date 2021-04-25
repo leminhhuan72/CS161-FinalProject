@@ -14,8 +14,9 @@ void login()
     {
         cout<<"Please input 1 if you are student or 2 if you are staff";
         cin>>n;
+        
     }
-     
+    cin.get(); 
     if(n==1)
     {
       studentLogin();

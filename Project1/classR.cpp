@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-void createAClass(classR& _init_, schoolYr _this_year_)
+void createAClass(classR& _init_)
 {
  cout<<"Type the name of the class\n";
  getline(cin,_init_.name);
  cout<<"How many students are there in this class\n?";
  cin>>_init_.num_of_students;
- _init_.schoolYear = &_this_year_;
+
 }
 
 void inputAClass (classR& dest,ifstream & fin )

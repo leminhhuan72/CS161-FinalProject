@@ -1,5 +1,3 @@
-
-#define nullptr NULL
 #include "course.h"
 using namespace std;
 
