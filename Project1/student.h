@@ -1,6 +1,7 @@
 #ifndef _STUDENT_H_ 
 #define _STUDENT_H_ 
 #include "date.h"
+#include "course.h"
 
 
 struct accountInfo{
@@ -17,6 +18,7 @@ struct student
 	bool Gender;
 	Date Date_of_Birth;
 	string SocialID;
+	course * enrolledCourse; 
 	//input a student 	
 	
 };

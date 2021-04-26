@@ -273,3 +273,44 @@ while (check)
 
 }
 */
+void enrollACourse(course* courseList,student thisStudent )
+{
+	course* cur = courseList ;
+	int count = 0 ;
+	cout<<"LIST OF COURSE:\n";
+	{
+		int order = 0;
+	   while(cur)
+	     {
+		   cout<<++order << cur->name <<'\n';
+		   cur=cur->pNext;
+	    }
+	}
+	int hook;
+	while(count<6)
+	{
+		course* tmp = courseList;
+		 thisStudent.enrolledCourse = new course; 
+		 course* tmp_2 = thisStudent.enrolledCourse;
+		 course* tmp_3 = thisStudent.enrolledCourse;
+		cout<<"Which course do you want to enroll?'\n";
+		cin>>hook;
+		bool check = true ; 
+
+		
+		while(hook>0)
+		{
+          tmp= tmp->pNext;
+          hook -- ; 
+		}
+		tmp_2->pNext = new course ; 
+		tmp_2 = tmp_2->pNext;
+	
+		*tmp_2 =*tmp; 
+		tmp_2->pNext=nullptr;
+		thisStudent.enrolledCourse=thisStudent.enrolledCourse->pNext;
+		delete tmp_3;
+
+		
+	}
+}
