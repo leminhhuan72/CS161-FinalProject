@@ -15,5 +15,11 @@ struct scoreboard {
 	int no;
 	mark score;
 };
+struct gpa{
+	double first=-1;
+	double second=-1;
+	double third=-1;
+	double overall;
+};
 
 #endif
