@@ -8,7 +8,13 @@ void createAClass(classR& _init_)
  getline(cin,_init_.name);
  cout<<"How many students are there in this class\n?";
  cin>>_init_.num_of_students;
-
+ ofstream fout("./class/class.txt", ios::app);
+ if(fout.is_open())
+  {
+	  fout<<_init_.name<<'\n';
+	  fout<<_init_.num_of_students<<'\n';
+  }
+  fout.close();
 }
 
 void inputAClass (classR& dest,ifstream & fin )

@@ -1,0 +1,32 @@
+schoolyear->semester->course-> student 
+schoolYear -> class -> student 
+
+
+ g++ Source.cpp login.cpp semester.cpp course.cpp classR.cpp schoolYear.cpp student.cpp date.cpp -o Source && ./Source
+#ifndef _SEMESTER_H_ 
+#define _SEMESTER_H_ 
+#include "schoolYear.h"
+#include "course.h"
+#include "date.h"
+
+
+struct semester { 
+    int No ;
+    schoolYr* year_of_this_semester ; 
+    Date start_date ; 
+    Date end_date ;
+    course * list_of_course ;
+};
+struct semester { 
+    int No ; 
+    schoolYr *year_of_this_semester;
+}
+void createASemester (semester& _init_ ,ifstream &fin );
+
+
+#endif 
+
+someone is opennign the file 
+the file is full 
+the file is on protected mode 
+the disk is overloaded

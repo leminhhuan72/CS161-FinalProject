@@ -12,5 +12,5 @@ struct schoolYr{
 	Date end_day;
 };
 
-void createSchoolYr (schoolYr & _init_, ofstream & fout);
+void createSchoolYr (schoolYr & _init_);
 #endif

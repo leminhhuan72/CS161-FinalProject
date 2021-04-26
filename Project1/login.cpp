@@ -31,6 +31,7 @@ void login()
         cout<<"3 TO ADD STUDENTS TO A CLASS\n";
         int n; 
         cin>>n ;
+        cin.get();
         string PATH ; 
         ofstream fin (PATH + ".txt" ,ios::app);
         switch (n)
@@ -39,10 +40,15 @@ void login()
           
           {
              schoolYr _init_;
-             createSchoolYr(_init_, fin);
+             createSchoolYr(_init_);
              break;
           }
-        
+        case 2: 
+        {
+          classR _init_;
+          createAClass(_init_);
+          break;
+        }
         default:
           cout<<"Please input right numbers";
           break;
