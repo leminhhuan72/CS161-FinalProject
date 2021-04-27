@@ -6,10 +6,18 @@
 using namespace std;
 
 
-void viewScoreBoardOfCourse(string nameYear, string nameSemester, string nameCourse){
+void viewScoreBoardOfCourse(char nameYear[], char nameSemester[], char nameCourse[]){
 
 	ifstream fin;
-	fin.open( nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
+	char end[]="-score.txt";
+	char link[]="-";
+	strcat(nameYear,link);
+	strcat(nameSemester,link);
+	strcat(nameCourse,end);
+	strcat(nameYear,nameSemester);
+	strcat(nameYear,nameCourse);
+	fin.open(nameYear);
+	//fin.open( nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
 	//fin.open("2021-2-cs162-score.txt");
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to back";
@@ -82,12 +90,20 @@ void viewScoreBoardOfCourse(string nameYear, string nameSemester, string nameCou
 	delete[]source;
 	return;		
 	}
-void updateStudentResult(string nameYear, string nameSemester, string nameCourse,string nameStudent )
+void updateStudentResult(char nameYear[], char nameSemester[], char nameCourse[],string nameStudent )
 //one course only
 {
 	
 	ifstream fin;
-	fin.open( nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
+	char end[]="-score.txt";
+	char link[]="-";
+	strcat(nameYear,link);
+	strcat(nameSemester,link);
+	strcat(nameCourse,end);
+	strcat(nameYear,nameSemester);
+	strcat(nameYear,nameCourse);
+	fin.open(nameYear);
+	//fin.open( nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
 	//fin.open("2021-2-cs162-score.txt");
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to back";
@@ -149,7 +165,8 @@ for (int j=0;j<n;j++){
 }
  fin.close();
  ofstream fout;
-fout.open(nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
+fout.open(nameYear);
+//fout.open(nameYear + '-' + nameSemester + '-' + nameCourse+'-'+"score.txt");
 fout<<n;
 	for (int i = 0; i < n; ++i)
 	{ 
@@ -171,7 +188,7 @@ fout.close();
 void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass){
 
 	ifstream fin;
-	fin.open( nameYear + '-' + nameSemester + '-' + nameClass+'-'+"score.txt");
+	//fin.open( nameYear + '-' + nameSemester + '-' + nameClass+'-'+"score.txt");
 	
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to back";

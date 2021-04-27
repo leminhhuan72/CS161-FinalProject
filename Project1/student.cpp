@@ -166,10 +166,17 @@ while (check)
 
 }
 //void enrollCourse(int&count, ifstream&fin,string nameyear,string semester,ofstream &fout)
-void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse) 
-{
+void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char[] namecourse) 
+{   
+    char link[] ="-";
+    char end[]=".txt"
+    strcat(nameyear,link);
+    strcat(namesemester,link);
+    strcat(nameyear,namesemester);
+    strcat(nameyear,namecourse);
+    strcat(nameyear,end);
 	ifstream fin;
-	fin.open( nameyear + '-' + namesemester + '-' + namecourse+".txt");
+	fin.open( nameyear);
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to back";
 		string u;
