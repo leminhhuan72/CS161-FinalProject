@@ -1,7 +1,8 @@
 #ifndef _STUDENT_H_ 
 #define _STUDENT_H_ 
+//#include "course.h"
 #include "date.h"
-#include "course.h"
+
 
 
 struct accountInfo{
@@ -18,7 +19,7 @@ struct student
 	bool Gender;
 	Date Date_of_Birth;
 	string SocialID;
-	course * enrolledCourse; 
+	//course * enrolledCourse; 
 	//input a student 	
 	
 };
@@ -28,5 +29,6 @@ void outputAStudent(student &a , ofstream &fout );
 void studentLogin();
 bool staffLogin();
 bool changePass(string currentPass, string newPass);
+//void enrollACourse(course* courseList,student thisStudent );
 void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse, int& n);
 #endif 

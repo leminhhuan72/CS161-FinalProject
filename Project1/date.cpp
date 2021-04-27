@@ -12,7 +12,7 @@ void inputADateFromConsole(Date &a ,string dateA)
     
 
 }
-void outputADate (Date a, ofstream& fout)
+void outputADate (Date a, ostream& fout)
 {
     fout<<a.date<<" "<<a.month<<' '<<a.year<<endl; 
 }

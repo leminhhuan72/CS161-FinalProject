@@ -49,6 +49,11 @@ void login()
           createAClass(_init_);
           break;
         }
+        case 3:
+        {
+              inputAClass();
+              break;
+        }
         default:
           cout<<"Please input right numbers";
           break;

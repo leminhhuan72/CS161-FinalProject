@@ -2,7 +2,7 @@
 #define _CLASSR_H_ 
 
 #include "student.h"
-
+#include "FileManipulate.h"
 struct classR
 {
 	string name;
@@ -12,6 +12,6 @@ struct classR
 };
 
 void createAClass(classR & _init_);
-void inputAClass (string path , classR& dest,ifstream & fin );
+void inputAClass ( );
 #endif 
 

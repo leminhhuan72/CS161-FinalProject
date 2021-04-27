@@ -2,7 +2,7 @@
 #define _COURSE_H_
 
 #include "student.h"
-#define nullptr NULL
+
 using namespace std;
 
 
