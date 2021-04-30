@@ -178,7 +178,7 @@ void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemest
 	ifstream fin;
 	fin.open( nameyear);
 	if (!fin.is_open()) {
-		cout << "can not open file ,please enter any character to back";
+		cout << "can not open file ,please enter any character to return back";
 		string u;
 		cin >> u;
 		return;

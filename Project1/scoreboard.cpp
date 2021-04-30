@@ -1,4 +1,5 @@
 #include <iostream>
+#include "student.h"
 #include <fstream>
 #include "gotoXY.h"
 #include <string.h>
@@ -191,7 +192,7 @@ void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass
 	//fin.open( nameYear + '-' + nameSemester + '-' + nameClass+'-'+"score.txt");
 	
 	if (!fin.is_open()) {
-		cout << "can not open file ,please enter any character to back";
+		cout << "can not open file ,please enter any character to return back";
 		string u;
 		cin >> u;
 		return;
@@ -208,4 +209,49 @@ void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass
 	delete[]source;
 	return;		
 	}
+void importStudentToCSV( char nameyear[], char namesemester[], char[] namecourse) 
+{   
+    
+    char link[] ="-";
+    char end[]=".txt"
+    strcat(nameyear,link);
+    strcat(namesemester,link);
+    strcat(nameyear,namesemester);
+    strcat(nameyear,namecourse);
+    char copy[];
+    strcpy(copy,nameyear);
+    char end1[]="-studentList.txt";
+    strcat(copy,end1);
+    strcat(nameyear,end);
+	ifstream fin;
+	ofstream fout;
+	fin.open( nameyear);
+	//fin.open( nameyear + '-' + namesemester + '-' + namecourse+'-'+".txt");
+	if (!fin.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;
+	}
+	else{
+		int i=0;
+		student* pStudent = new student[1000];
+	
+		while (!fin.eof()){
+			inputAStudent(pStudent[i],fin);	
+			i++;
+		}
+		fin.close();
+	}
+		fout.open(copy);
+		if (!fout.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;}
+		else{
+			fout<<pStudent[i].First_name<<","<<pStudent[i].Last_name<<","<<pStudent[i].StudentID<<endl;
+		}
+}
 		
+
