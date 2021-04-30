@@ -209,23 +209,25 @@ void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass
 	delete[]source;
 	return;		
 	}
-void importStudentToCSV( char nameyear[], char namesemester[], char[] namecourse) 
+void importStudentToCSV( char nameyear[], char namesemester[], char namecourse[]) 
 {   
     
     char link[] ="-";
-    char end[]=".txt"
+    char end[]=".txt";
     strcat(nameyear,link);
     strcat(namesemester,link);
     strcat(nameyear,namesemester);
     strcat(nameyear,namecourse);
-    char copy[];
+    char copy[1000];
     strcpy(copy,nameyear);
     char end1[]="-studentList.txt";
     strcat(copy,end1);
     strcat(nameyear,end);
 	ifstream fin;
 	ofstream fout;
+	int count;
 	fin.open( nameyear);
+	student* pStudent = new student[1000];
 	//fin.open( nameyear + '-' + namesemester + '-' + namecourse+'-'+".txt");
 	if (!fin.is_open()) {
 		cout << "can not open file ,please enter any character to return back";
@@ -235,11 +237,13 @@ void importStudentToCSV( char nameyear[], char namesemester[], char[] namecourse
 	}
 	else{
 		int i=0;
-		student* pStudent = new student[1000];
 	
+		fin>>count;
+	fin.ignore();
 		while (!fin.eof()){
 			inputAStudent(pStudent[i],fin);	
 			i++;
+			
 		}
 		fin.close();
 	}
@@ -250,8 +254,90 @@ void importStudentToCSV( char nameyear[], char namesemester[], char[] namecourse
 		cin >> u;
 		return;}
 		else{
-			fout<<pStudent[i].First_name<<","<<pStudent[i].Last_name<<","<<pStudent[i].StudentID<<endl;
+			int i=0;
+			fout<<count<<endl;
+			for(int i=0;i<count;i++){
+			
+			fout<<pStudent[i].First_name<<" "<<pStudent[i].Last_name<<","<<pStudent[i].StudentID<<endl;
+		}
+	}
+		fout.close();
+}
+void importScoreboard(char nameyear[], char namesemester[], char namecourse[]){
+
+    char link[] ="-";
+    char end[]="-mark.txt";
+    strcat(nameyear,link);
+    strcat(namesemester,link);
+    strcat(nameyear,namesemester);
+    strcat(nameyear,namecourse);
+    char copy[100];
+    char copy1[100];
+    strcpy(copy,nameyear);
+    strcpy(copy1,nameyear);
+    char end1[]="-studentList.txt";
+    char end2[]="-score.txt";
+    strcat(copy,end1);
+    strcat(nameyear,end);
+    strcat(copy1,end2);
+	ifstream fin;
+	ofstream fout;
+	char nothing;
+	int count=0;
+	
+	student* pStudent = new student[1000];
+		mark* pMark = new mark[1000];
+	fin.open( copy);
+	//fin.open( nameyear + '-' + namesemester + '-' + namecourse+'-'+".txt");
+	if (!fin.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;
+	}
+	else{
+	int i=0;		
+	fin>>count;
+	fin.ignore();
+		while (!fin.eof()){
+			inputAStudent(pStudent[i],fin);	
+			i++;
 		}
 }
+fin.close();
+fin.open(nameyear);
+if (!fin.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;
+	}
+	else{
+		int j=0;
+		fin>>count;
+	
+		while (!fin.eof()){
+			fin>>pMark[j].midtermMark>>nothing>>pMark[j].finalMark>>nothing>>pMark[j].otherMark>>nothing>>pMark[j].totalMark;	
+			j++;
+		}
 		
+	}
+fin.close();
+// luu vao file score
+	fout.open(copy1);
+	if (!fout.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;}
+		else{
 
+			fout<<count<<endl;
+			for(int i=0;i<count;i++){
+			
+			fout<<pStudent[i].StudentID<<","<<pStudent[i].First_name<<" "<<pStudent[i].Last_name<<","<<pStudent[i].sclass<<","<<pMark[i].midtermMark;
+			fout<<","<<pMark[i].finalMark<<","<<pMark[i].otherMark<<","<<pMark[i].totalMark<<endl;
+		}
+	}
+		fout.close();
+}

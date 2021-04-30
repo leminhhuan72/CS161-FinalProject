@@ -17,6 +17,7 @@ struct student
 	bool Gender;
 	Date Date_of_Birth;
 	string SocialID;
+	string sclass;
 	//input a student 	
 };
 void inputAStudent(student& a , ifstream &fin );

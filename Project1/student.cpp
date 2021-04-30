@@ -1,6 +1,7 @@
 #include "student.h"
-
-
+#include <iostream>
+#include <fstream>
+#include "string.h"
 void inputAStudent(student& a , ifstream &fin )
 {
 
@@ -8,6 +9,7 @@ void inputAStudent(student& a , ifstream &fin )
     getline(fin, a.StudentID);
     getline(fin, a.First_name);
     getline(fin, a.Last_name);
+    getline(fin,a.sclass);
     string gender ; 
     getline(fin, gender );
     if(gender == "male")a.Gender=true ;
@@ -21,13 +23,14 @@ void saveAStudent(student& a, ofstream& fout)
     fout << "Student ID:" << '\t' << a.StudentID << endl;
     fout << "First Name:" << '\t' << a.First_name << endl;
     fout << "Last Name:" << '\t' << a.Last_name << endl;
+    fout << "Class:" <<'\t'<<a.sclass<<endl;
     fout << "Gender:" << '\t' << a.Gender << endl;
     fout << "Date of birth:" << '\t';
     outputADate(a.Date_of_Birth, fout);
     fout << "Social ID:" << '\t' << a.SocialID << endl;
 }
 void outputAStudent(student &a ){
-    cout << a.No <<'\n'<<a.StudentID<<'\n'<<a.First_name<<' '<<a.Last_name<<'\n'<<a.Gender<<'\n';
+    cout << a.No <<'\n'<<a.StudentID<<'\n'<<a.First_name<<' '<<a.Last_name<<'\n'<<a.sclass<<'\n'<<a.Gender<<'\n';
     outputADateToScreen(a.Date_of_Birth);
     
     cout<<a.SocialID<<'\n';
@@ -166,10 +169,10 @@ while (check)
 
 }
 //void enrollCourse(int&count, ifstream&fin,string nameyear,string semester,ofstream &fout)
-void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char[] namecourse) 
+void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char namecourse[]) 
 {   
     char link[] ="-";
-    char end[]=".txt"
+    char end[]=".txt";
     strcat(nameyear,link);
     strcat(namesemester,link);
     strcat(nameyear,namesemester);
@@ -184,6 +187,9 @@ void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemest
 		return;
 	}
 	else{
+		double count;
+		fin>>count;
+		//number of student
 		int i=0;
 		pStudent = new student[1000];
 		while (!fin.eof()){
