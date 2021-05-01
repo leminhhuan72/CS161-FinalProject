@@ -15,7 +15,9 @@ void createSchoolYr(schoolYr& _init_) {
   else {
     fout << _init_.schoolYrNo << "\n";
     outputADate(_init_.start_day, fout);
+    cout << endl;
     outputADate(_init_.end_day, fout);
+    cout << endl;
     fout << _init_.num_of_class;
   }
   fout.close();

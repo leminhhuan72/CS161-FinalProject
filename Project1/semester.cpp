@@ -3,27 +3,38 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
   cout << "Which number is this semester (1 ,2 or 3)\n";
   cin >> _init_.No;
   cin.get();
-  cout << "What school year is this semester belong to\n ";
-  string schoolYr;
-  getline(cin, schoolYr);
-  // check whether there has been thís  school YEar
+  _init_._this_year = &_recentYr_;
   cout << "When does this semester start" << endl;
   inputADate(_init_.start_date, cin);
   cout << "When does this semester end " << endl;
   inputADate(_init_.end_date, cin);
-  cout << "Do you want to add course to this semester (Y/N) " << endl;
+  cout << "Do you want to add course to this semester \n 1 to registrate a course\n 2 to exit " << endl;
   int n;
   cin >> n;
   cin.get();
-  cout << " 1 to registrate a  course \n 2 to exit\n ";
+  ofstream fout;
+  string path = "./semester/" + _recentYr_.schoolYrNo + ".txt";
+  fout.open(path, ios::app);
+  if (!fout.is_open()) {
+    cout << "Can not open file to store the date of this semester!\n";
+  } else {
+    fout << _init_._this_year->schoolYrNo << endl;  //2020-2021
+    fout << _init_.No << endl;                      //1
+    outputADate(_init_.start_date, fout);           //12 10 2020
+    fout << endl;
+    outputADate(_init_.end_date, fout);  //12 12 2021
+  }
   while (n != 1 && n != 2) {
     cout << "Please input 1 to registrate a course \n 2 to exit \n";
     cin >> n;
-    cin.get();
   }
   while (n == 1) {
     courseRegis(_init_.list_of_course);
     cout << "Please input 1 to registrate a course \n 2 to exit \n";
     cin >> n;
+    while (n != 1 && n != 2) {
+      cout << "Please input 1 to registrate a course \n 2 to exit \n";
+      cin >> n;
+    }
   }
 }

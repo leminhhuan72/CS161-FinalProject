@@ -1,5 +1,5 @@
-schoolyear->semester->course-> student 
-schoolYear -> class -> student 
+schoolyear->semester->course->class-> student 
+
 
 
  g++ Source.cpp login.cpp semester.cpp course.cpp classR.cpp schoolYear.cpp student.cpp date.cpp  -o Source && ./Source

@@ -8,6 +8,10 @@ void login() {
   for (int i = 0; i < 3; ++i)
     cout << '\t';
   cout << "ARE YOU STUDENT OR STAFF ( Enter 1 if you are student , 2 if you are staff " << endl;
+  Date Now;
+  getCurrentDate(Now);
+  cout << "The current date is ";
+  outputADateToScreen(Now);
   int n;
   cin >> n;
   while (n != 1 && n != 2) {
@@ -57,10 +61,11 @@ void login() {
           inputAClass();
           break;
         }
-          /* case 4: {
-          createASemester();
+        case 4: {
+          semester _init_;
+          createASemester(_init_, recent);
           break;
-        }*/
+        }
         default:
           cout << "Please input right numbers";
           break;
