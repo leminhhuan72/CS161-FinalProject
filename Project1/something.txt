@@ -2,7 +2,7 @@ schoolyear->semester->course-> student
 schoolYear -> class -> student 
 
 
- g++ Source.cpp login.cpp semester.cpp course.cpp classR.cpp schoolYear.cpp student.cpp date.cpp FileManipulate.cpp -o Source && ./Source
+ g++ Source.cpp login.cpp semester.cpp course.cpp classR.cpp schoolYear.cpp student.cpp date.cpp  -o Source && ./Source
 #ifndef _SEMESTER_H_ 
 #define _SEMESTER_H_ 
 #include "schoolYear.h"

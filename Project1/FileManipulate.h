@@ -3,6 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-bool is_empty(std::fstream  pFile);
+bool is_empty(std::fstream pFile);
 
 #endif 
