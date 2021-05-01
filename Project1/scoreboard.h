@@ -21,5 +21,10 @@ struct gpa{
 	double third;
 	double overall;
 };
+void viewScoreBoardOfCourse(char nameYear[], char nameSemester[], char nameCourse[]);
+void updateStudentResult(char nameYear[], char nameSemester[], char nameCourse[],string nameStudent );
+void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass);
+void importStudentToCSV( char nameyear[], char namesemester[], char namecourse[]) ;
+void importScoreboard(char nameyear[], char namesemester[], char namecourse[]);
 
 #endif

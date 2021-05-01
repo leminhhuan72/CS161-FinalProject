@@ -6,7 +6,7 @@
 #include "scoreboard.h"
 using namespace std;
 
-
+//task 23
 void viewScoreBoardOfCourse(char nameYear[], char nameSemester[], char nameCourse[]){
 
 	ifstream fin;
@@ -91,6 +91,7 @@ void viewScoreBoardOfCourse(char nameYear[], char nameSemester[], char nameCours
 	delete[]source;
 	return;		
 	}
+//task 24	
 void updateStudentResult(char nameYear[], char nameSemester[], char nameCourse[],string nameStudent )
 //one course only
 {
@@ -186,6 +187,7 @@ fout<<n;
 }
 fout.close();
 }
+//task 25 , havent finished
 void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass){
 
 	ifstream fin;
@@ -209,7 +211,8 @@ void viewScoreBoardOfClass(string nameYear, string nameSemester,string nameClass
 	delete[]source;
 	return;		
 	}
-void importStudentToCSV( char nameyear[], char namesemester[], char namecourse[]) 
+//task 21
+void exportStudentToCSV( char nameyear[], char namesemester[], char namecourse[]) 
 {   
     
     char link[] ="-";
@@ -263,6 +266,7 @@ void importStudentToCSV( char nameyear[], char namesemester[], char namecourse[]
 	}
 		fout.close();
 }
+//task 22
 void importScoreboard(char nameyear[], char namesemester[], char namecourse[]){
 
     char link[] ="-";
@@ -340,4 +344,8 @@ fin.close();
 		}
 	}
 		fout.close();
+}
+//task 26
+void viewPriScoreBoard(char nameYear[], char nameSemester[]){
+	
 }
