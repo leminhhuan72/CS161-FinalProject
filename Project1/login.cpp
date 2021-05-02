@@ -184,6 +184,7 @@ void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& re
   }
 }
 void menyChoice(schoolYr& recent, semester& recent_sem) {
+  bool courseExist = false;
   int n;
   cin >> n;
   cin.get();
@@ -216,7 +217,7 @@ void menyChoice(schoolYr& recent, semester& recent_sem) {
       break;
     }
     default:
-
+      exit;
       break;
   }
 }

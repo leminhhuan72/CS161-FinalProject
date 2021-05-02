@@ -24,11 +24,6 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
   while (compare2Days(_init_.regis_end, _init_.end_date) == 1 || compare2Days(_init_.regis_end, _init_.regis_start) <= 0) {
     inputADateFromConsole(_init_.start_date, " a day which is before the semester ends and after the session starts ");
   }
-
-  cout << "Do you want to add course to this semester \n 1 to registrate a course\n 2 to exit " << endl;
-  int n;
-  cin >> n;
-  cin.get();
   ofstream fout;
   string path = "./semester/" + _recentYr_.schoolYrNo + ".txt";
   fout.open(path, ios::app);
@@ -45,19 +40,7 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
     fout << endl;
     outputADate(_init_.regis_end, fout);
     fout << endl;
-  }
-  while (n != 1 && n != 2) {
-    cout << "Please input 1 to registrate a course \n 2 to exit \n";
-    cin >> n;
-  }
-  while (n == 1) {
-    courseRegis(_init_.list_of_course);
-    cout << "Please input 1 to registrate a course \n 2 to exit \n";
-    cin >> n;
-    while (n != 1 && n != 2) {
-      cout << "Please input 1 to registrate a course \n 2 to exit \n";
-      cin >> n;
-    }
+    cout << "Store data of this semester successfully!\n";
   }
 }
 bool loadSemester(semester& _load_, schoolYr _recentYr_) {

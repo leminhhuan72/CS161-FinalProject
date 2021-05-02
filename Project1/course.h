@@ -55,5 +55,6 @@ struct schoolYr {
 void courseRegis(course*& totalCourse);
 bool storecoursesList(course* totalCourse, semester recent);
 void createARegisSession(courseRegisSession& recent);
+bool loadCourses(semester& recent_sem);
 
 #endif

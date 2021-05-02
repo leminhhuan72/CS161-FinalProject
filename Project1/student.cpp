@@ -104,9 +104,9 @@ bool studentLogin(string& currentUser) {
 
     getline(cin, pass);
     ifstream fin;
-    fin.open("staffAccount.txt");
+    fin.open("studentAccount.txt");
     if (!fin.is_open()) {
-      cout << "No data on staffs accounts" << endl;
+      cout << "No data on student accounts" << endl;
       return false;
     } else {
       string name1, pass1;
