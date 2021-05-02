@@ -22,3 +22,12 @@ int countLine(std::string fileName) {
   }
   return count;
 }
+bool file_is_empty(std::string fileName) {
+  std::ifstream ifs(fileName, std::ios::ate);  // std::ios::ate means open at end
+
+  if (ifs.tellg() == 0) {
+    return true;
+  }
+  ifs.close();
+  return false;
+}

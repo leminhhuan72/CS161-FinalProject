@@ -22,7 +22,8 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
     fout << _init_.No << endl;                      //1
     outputADate(_init_.start_date, fout);           //12 10 2020
     fout << endl;
-    outputADate(_init_.end_date, fout);  //12 12 2021
+    outputADate(_init_.end_date, fout);
+    fout << endl;  //12 12 2021
   }
   while (n != 1 && n != 2) {
     cout << "Please input 1 to registrate a course \n 2 to exit \n";
@@ -37,4 +38,30 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
       cin >> n;
     }
   }
+}
+bool loadSemester(semester& _load_, schoolYr _recentYr_) {
+  ifstream fin;
+  string path = "./semester/" + _recentYr_.schoolYrNo + ".txt";
+  fin.open(path);
+  if (fin.is_open()) {
+    if (file_is_empty(path))
+      return false;
+    else {
+      _load_._this_year = &_recentYr_;
+      int totalLine = countLine(path);
+      fin = readFile(path, totalLine, 5);
+      string _tmp;
+      getline(fin, _tmp);
+      fin >> ws;
+      fin >> _load_.No;
+      fin.get();
+      inputADate(_load_.start_date, fin);
+      fin >> ws;
+      inputADate(_load_.end_date, fin);
+      fin >> ws;
+    }
+  } else
+    return false;
+  fin.close();
+  return true;
 }

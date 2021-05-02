@@ -4,13 +4,10 @@
 #include "classR.h"
 
 using namespace std;
-struct times {
-  int minu;
-  int hour;
-};
+
 struct session {
-  times time;
-  Date day;
+  int shift;  //(1,2,3,4)
+  string day_in_week;
 };
 struct inforLecture {
   string username;
@@ -20,13 +17,12 @@ struct inforLecture {
 };
 
 struct course {
-  int num;          //so thu tu
-  string name;      // ma mon hoc vi du CS162
-  string fullname;  // ten mon hoc
-  times startTime;
-  times finishTime;
+  int num;           //so thu tu
+  int numOfCredits;  //so tin chi
+  int maxStudent;    //so luong hoc sinh toi da
+  string ID;         // ma mon hoc vi du CS162
+  string fullname;   // ten mon hoc
   string classroom;  //phong hoc
-  string clas;       // lop hoc vi du 20ctt1, viet class khong duoc nen dung clas :(
   Date startDate;
   Date finishDate;
   session first;
@@ -51,6 +47,6 @@ struct schoolYr {
   Date end_day;
 };
 void courseRegis(course*& totalCourse);
-void storecoursesList(course* totalCourse, semester recent);
+bool storecoursesList(course* totalCourse, semester recent);
 
 #endif

@@ -24,21 +24,68 @@ void login() {
   } else if (n == 2) {
     if (staffLogin()) {
       schoolYr recent;
+      semester recent_sem;
       if (loadSchoolYr(recent)) {
         cout << "The recent school year is " << recent.schoolYrNo << endl;
         cout << "The start date is ";
         outputADateToScreen(recent.start_day);
         cout << "The end date is ";
         outputADateToScreen(recent.end_day);
-        cout << "There are " << recent.num_of_class << "classes in this school year\n";
+        cout << "There are " << recent.num_of_class << " classes in this school year\n\n";
       } else {
         cout << "please input a new schoolYear\n";
+        cout << "1: input a new school Year\n";
+        cout << "2: exit\n";
+        int n;
+        while (cin >> n) {
+          if (n == 1) {
+            createSchoolYr(recent);
+            break;
+          } else if (n == 2)
+            return;
+          else
+            cout << "1: input a new school Year\n 2: exit \n";
+        }
+      }
+      if (loadSemester(recent_sem, recent)) {
+        cout << "The recent semester is ";
+        switch (recent_sem.No) {
+          case 1:
+            cout << "Fall\n";
+            break;
+          case 2:
+            cout << "Spring\n";
+            break;
+          default:
+            cout << "Summer\n";
+            break;
+        }
+        cout << "The start date of this semester is ";
+        outputADateToScreen(recent_sem.start_date);
+        cout << "The end date of this semester is ";
+        outputADateToScreen(recent_sem.end_date);
+
+      } else {
+        cout << "please input a new semester\n";
+        cout << "1: input a new semester\n";
+        cout << "2: exit\n";
+        int n;
+        while (cin >> n) {
+          if (n == 1) {
+            createASemester(recent_sem, recent);
+            break;
+          } else if (n == 2)
+            return;
+          else
+            cout << "1: input a new school Year\n 2: exit \n";
+        }
       }
       cout << "WHICH TASK YOU WANT TO DO ?\n";
       cout << "TYPE 1 TO CREATE A NEW SCHOOL YEAR \n";
       cout << "2 TO CREATE A CLASS\n";
       cout << "3 TO ADD STUDENTS TO A CLASS\n";
       cout << "4 TO CREATE A NEW SEMESTER \n";
+
       int n;
       cin >> n;
       cin.get();
@@ -48,8 +95,7 @@ void login() {
         case 1:
 
         {
-          schoolYr _init_;
-          createSchoolYr(_init_);
+          createSchoolYr(recent);
           break;
         }
         case 2: {
@@ -64,6 +110,11 @@ void login() {
         case 4: {
           semester _init_;
           createASemester(_init_, recent);
+          if (storecoursesList(_init_.list_of_course, _init_))
+            cout << "STORE COURSES INFORMATION SUCCESSFULLY!" << endl;
+          else
+            cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!" << endl;
+
           break;
         }
         default:
