@@ -16,7 +16,7 @@ struct student {
   bool Gender;
   Date Date_of_Birth;
   string SocialID;
-  //course * enrolledCourse;
+  //string sclass; ?
   //input a student
 };
 

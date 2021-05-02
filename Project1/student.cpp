@@ -5,6 +5,7 @@ void inputAStudent(student& a, ifstream& fin) {
   getline(fin, a.StudentID);
   getline(fin, a.First_name);
   getline(fin, a.Last_name);
+  // getline(fin, a.sclass);
   string gender;
   getline(fin, gender);
   if (gender == "male")
@@ -19,6 +20,7 @@ void saveAStudent(student& a, ofstream& fout) {
   fout << "Student ID:" << '\t' << a.StudentID << endl;
   fout << "First Name:" << '\t' << a.First_name << endl;
   fout << "Last Name:" << '\t' << a.Last_name << endl;
+  //fout << "Class:" << '\t' << a.sclass << endl;
   fout << "Gender:" << '\t' << a.Gender << endl;
   fout << "Date of birth:" << '\t';
   outputADate(a.Date_of_Birth, fout);
@@ -28,6 +30,7 @@ void outputAStudent(student& a) {
   cout << a.No << '\n'
        << a.StudentID << '\n'
        << a.First_name << ' ' << a.Last_name << '\n'
+       // << a.sclass << '\n'
        << a.Gender << '\n';
   outputADateToScreen(a.Date_of_Birth);
 
@@ -188,35 +191,7 @@ bool staffLogin(string& currentUser) {
   }
   return true;
 }
-/*
-while (check)
-   {
-	//cac thao tac ma staff thuc hien khi login thanh cong
-	bool notRest = true;
-	while (notRest){
-	cout<<"Enter 0 to change password "<<'\n';
-	cout<<"Enter 9 to logout "<<'\n';
-	int x;
-	cin>>x;
-    bool a = true ; 
-	switch(x){
-		case 0://change password
-		 a=changePass(currentPass,currentUser);
-		while (!a){
-		a=changePass(currentPass,currentUser);
-		}
-		break;
 
-		case 9: cout<<"logout successfully";
-		break;
-		default: return ;
-		}
-				}
-	}
-	
-
-}
-*/
 /*void enrollACourse(course* courseList,student thisStudent )
 {
 	course* cur = courseList ;
@@ -259,5 +234,36 @@ while (check)
 		delete tmp_3;
 		
 		
+	}
+}*/
+/*
+void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char namecourse[]) 
+{   
+    char link[] ="-";
+    char end[]=".txt";
+    strcat(nameyear,link);
+    strcat(namesemester,link);
+    strcat(nameyear,namesemester);
+    strcat(nameyear,namecourse);
+    strcat(nameyear,end);
+	ifstream fin;
+	fin.open( nameyear);
+	if (!fin.is_open()) {
+		cout << "can not open file ,please enter any character to return back";
+		string u;
+		cin >> u;
+		return;
+	}
+	else{
+		double count;
+		fin>>count;
+		//number of student
+		int i=0;
+		pStudent = new student[1000];
+		while (!fin.eof()){
+			inputAStudent(pStudent[i],fin);
+			cout<<pStudent[i].First_name<<" "<<pStudent[i].Last_name<<endl;
+			i++;
+		}
 	}
 }*/

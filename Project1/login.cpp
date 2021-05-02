@@ -66,7 +66,7 @@ void login() {
         cout << "5 ADD COURSES TO THIS SEMESTER\n";
         cout << "ANY OTHER KEYS TO EXIT\n";
       }
-      menyChoice(recent, recent_sem);
+      menuChoice(recent, recent_sem);
 
     } else {
       cout << "GOOD BYE!!!!!";
@@ -183,8 +183,7 @@ void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& re
     return;
   }
 }
-void menyChoice(schoolYr& recent, semester& recent_sem) {
-  bool courseExist = false;
+void menuChoice(schoolYr& recent, semester& recent_sem) {
   int n;
   cin >> n;
   cin.get();
