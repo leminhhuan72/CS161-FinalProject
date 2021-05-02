@@ -84,3 +84,19 @@ void getCurrentDate(Date &Current) {
     }
   }
 }
+int exactOrderOfDay(Date &a) {
+  int dayofMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int leapYear = a.year / 4 - a.year / 100 + a.year / 400;
+  int results = (a.year - 1) * 365 + leapYear + a.date;
+  for (int i = 0; i <= a.month - 2; ++i)
+    results += dayofMonth[i];
+  return results;
+}
+int compare2Days(Date a, Date b) {
+  if (exactOrderOfDay(a) > exactOrderOfDay(b))
+    return 1;
+  else if (exactOrderOfDay(a) == exactOrderOfDay(b))
+    return 0;
+  else
+    return -1;
+}

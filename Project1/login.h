@@ -3,4 +3,8 @@
 
 #include "schoolYear.h"
 void login();
+void checkSchoolYr(schoolYr& recent);
+void checkSemester(semester& recent_sem, schoolYr& recent);
+void checkSchoolYr_st(schoolYr& recent);
+void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& regisActive);
 #endif

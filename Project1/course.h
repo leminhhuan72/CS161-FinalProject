@@ -30,6 +30,10 @@ struct course {
   course* pNext;
   inforLecture lecturer;
 };
+struct courseRegisSession {
+  Date start_date;
+  Date end_date;
+};
 struct schoolYr;
 struct semester {
   int No;  //1 : fall , 2:spring , 3 : summer
@@ -37,6 +41,8 @@ struct semester {
   Date start_date;
   Date end_date;
   course* list_of_course;
+  Date regis_start;
+  Date regis_end;
 };
 struct schoolYr {
   string schoolYrNo;
@@ -48,5 +54,6 @@ struct schoolYr {
 };
 void courseRegis(course*& totalCourse);
 bool storecoursesList(course* totalCourse, semester recent);
+void createARegisSession(courseRegisSession& recent);
 
 #endif

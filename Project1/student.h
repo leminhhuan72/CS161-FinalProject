@@ -20,13 +20,11 @@ struct student {
   //input a student
 };
 
-
-
 void inputAStudent(student& a, ifstream& fin);
 void saveAStudent(student& a, ofstream& fout);
 void outputAStudent(student& a, ofstream& fout);
-void studentLogin();
-bool staffLogin();
+bool studentLogin(string& currentUser);
+bool staffLogin(string& currentUser);
 bool changePass(string currentPass, string newPass);
 //void enrollACourse(course* courseList,student thisStudent );
 void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse, int& n);
