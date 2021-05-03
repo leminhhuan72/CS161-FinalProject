@@ -28,45 +28,25 @@ void login() {
     if (studentLogin(currentUser)) {
       checkSchoolYr_st(recent);
       bool regisActive;
+
       checkSemester_st(recent_sem, recent, Now, regisActive);
       if (!loadCourses(recent_sem)) regisActive = false;
-      if (regisActive) {
-        cout << "WHICH TASK YOU WANT TO DO ?\n";
-        cout << "1 TO ENROLL COURSE \n";
-        cout << "2 TO CREATE A CLASS\n";
-        cout << "3 TO ADD STUDENTS TO A CLASS\n";
-        cout << "4 TO CREATE A NEW SEMESTER \n";
-      } else {
-        cout << "WHICH TASK YOU WANT TO DO ?\n";
-        cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
-        cout << "2 TO CREATE A CLASS\n";
-        cout << "3 TO ADD STUDENTS TO A CLASS\n";
-        cout << "4 TO CREATE A NEW SEMESTER \n";
-      }
+      menuChoice_st(recent, recent_sem, regisActive);
     }
   } else if (n == 2) {
     if (staffLogin(currentUser)) {
       checkSchoolYr(recent);
       checkSemester(recent_sem, recent);
-      if (loadCourses(recent_sem)) {
-        cout << "WHICH TASK YOU WANT TO DO ?\n";
-        cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
-        cout << "2 TO CREATE A CLASS\n";
-        cout << "3 TO ADD STUDENTS TO A CLASS\n";
-        cout << "4 TO CREATE A NEW SEMESTER \n";
-        cout << "5 TO VIEW LIST OF COURSES\n";
-        cout << "ANY OTHER KEYS TO EXIT\n";
+      if (canLoadClass(recent)) {
+        if (loadClass(recent)) {
+          cout << "load classes successfully!\n\n";
+        } else
+          cout << "load classes unsuccessfully\n\n";
       } else {
-        cout << "THERE HAVE NOT BEEN ANY COURSES ADDED YET.\n";
-        cout << "WHICH TASK YOU WANT TO DO ?\n";
-        cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
-        cout << "2 TO CREATE A CLASS\n";
-        cout << "3 TO ADD STUDENTS TO A CLASS\n";
-        cout << "4 TO CREATE A NEW SEMESTER \n";
-        cout << "5 ADD COURSES TO THIS SEMESTER\n";
-        cout << "ANY OTHER KEYS TO EXIT\n";
+        cout << "NOT ENOUGH INFORMATION ABOUT CLASSES AND STUDENTS\n\n";
       }
-      menuChoice(recent, recent_sem);
+      bool loadCourse = loadCourses(recent_sem);
+      menuChoice(recent, recent_sem, loadCourse);
 
     } else {
       cout << "GOOD BYE!!!!!";
@@ -183,40 +163,127 @@ void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& re
     return;
   }
 }
-void menuChoice(schoolYr& recent, semester& recent_sem) {
-  int n;
-  cin >> n;
-  cin.get();
-  switch (n) {
-    case 1:
+void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse) {
+  if (loadCourse) {
+    cout << "WHICH TASK YOU WANT TO DO ?\n";
+    cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
+    cout << "2 TO CREATE A CLASS\n";
+    cout << "3 TO ADD STUDENTS TO A CLASS\n";
+    cout << "4 TO CREATE A NEW SEMESTER \n";
+    cout << "5 TO ADD A NEW COURSE\n";
+    cout << "6 TO VIEW LIST OF COURSES\n";
+    cout << "7 TO DELETE A COURSE\n";
+    cout << "8 TO UPDATE A COURSE INFO\n";
+    cout << "ANY OTHER KEYS TO EXIT\n";
+    int n;
+    cin >> n;
+    cin.get();
+    switch (n) {
+      case 1:
 
-    {
-      createSchoolYr(recent);
-      break;
+      {
+        createSchoolYr(recent);
+        break;
+      }
+      case 2: {
+        classR _init_;
+        createAClass(_init_);
+        break;
+      }
+      case 3: {
+        inputAClass();
+        break;
+      }
+      case 4: {
+        createASemester(recent_sem, recent);
+        break;
+      }
+      case 5: {
+        courseRegis(recent_sem.list_of_course);
+        if (storecoursesList(recent_sem))
+          cout << "STORE COURSES INFORMATION SUCCESSFULLY!\n";
+        else
+          cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!\n";
+        break;
+      }
+      case 6: {
+        viewListOfCourse(recent_sem);
+
+        break;
+      }
+      case 7: {
+        deleteACourse(recent_sem.list_of_course);
+        if (storecoursesList(recent_sem))
+          cout << "STORE COURSES INFORMATION SUCCESSFULLY!\n";
+        else
+          cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!\n";
+
+        break;
+      }
+      case 8: {
+        updateCourseInfo(recent_sem.list_of_course);
+        if (storecoursesList(recent_sem))
+          cout << "STORE COURSES INFORMATION SUCCESSFULLY!\n";
+        else
+          cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!\n";
+      }
+      default:
+        exit;
+        break;
     }
-    case 2: {
-      classR _init_;
-      createAClass(_init_);
-      break;
+  } else {
+    cout << "THERE HAVE NOT BEEN ANY COURSES ADDED YET.\n";
+    cout << "WHICH TASK YOU WANT TO DO ?\n";
+    cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
+    cout << "2 TO CREATE A CLASS\n";
+    cout << "3 TO ADD STUDENTS TO A CLASS\n";
+    cout << "4 TO CREATE A NEW SEMESTER \n";
+    cout << "5 ADD COURSES TO THIS SEMESTER\n";
+    cout << "ANY OTHER KEYS TO EXIT\n";
+    int n;
+    cin >> n;
+    cin.get();
+    switch (n) {
+      case 1: {
+        createSchoolYr(recent);
+        break;
+      }
+      case 2: {
+        classR _init_;
+        createAClass(_init_);
+        break;
+      }
+      case 3: {
+        inputAClass();
+        break;
+      }
+      case 4: {
+        createASemester(recent_sem, recent);
+        break;
+      }
+      case 5: {
+        courseRegis(recent_sem.list_of_course);
+        if (storecoursesList(recent_sem))
+          cout << "STORE COURSES INFORMATION SUCCESSFULLY!\n";
+        else
+          cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!\n";
+        break;
+      }
+      default:
+        exit;
+        break;
     }
-    case 3: {
-      inputAClass();
-      break;
-    }
-    case 4: {
-      createASemester(recent_sem, recent);
-      break;
-    }
-    case 5: {
-      courseRegis(recent_sem.list_of_course);
-      if (storecoursesList(recent_sem.list_of_course, recent_sem))
-        cout << "STORE COURSES INFORMATION SUCCESSFULLY!\n";
-      else
-        cout << "STORE COURSES INFORMATION UNSUCCESSFULLY!\n";
-      break;
-    }
-    default:
-      exit;
-      break;
+  }
+}
+void menuChoice_st(schoolYr& recent, semester& recent_sem, bool regisActive) {
+  if (regisActive) {
+    cout << "WHICH TASK YOU WANT TO DO ?\n";
+    cout << "1 TO ENROLL COURSE \n";
+    cout << " \n";
+
+  } else {
+    cout << "WHICH TASK YOU WANT TO DO ?\n";
+    cout << "1 TO VIEW PROFILE\n";
+    cout << "2 TO VIEW LIST OF ENROLLED COURSES\n";
   }
 }

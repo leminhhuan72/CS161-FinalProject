@@ -13,9 +13,10 @@ struct student {
   string StudentID;
   string First_name;
   string Last_name;
-  bool Gender;
+  int Gender;  // 0: female , 1: male
   Date Date_of_Birth;
   string SocialID;
+  string userName;
   //string sclass; ?
   //input a student
 };

@@ -1,5 +1,5 @@
 #include "semester.h"
-void createASemester(semester& _init_, schoolYr _recentYr_) {
+void createASemester(semester& _init_, schoolYr& _recentYr_) {
   cout << "Which number is this semester (1 ,2 or 3)\n";
   cin >> _init_.No;
   cin.get();
@@ -43,7 +43,7 @@ void createASemester(semester& _init_, schoolYr _recentYr_) {
     cout << "Store data of this semester successfully!\n";
   }
 }
-bool loadSemester(semester& _load_, schoolYr _recentYr_) {
+bool loadSemester(semester& _load_, schoolYr& _recentYr_) {
   ifstream fin;
   string path = "./semester/" + _recentYr_.schoolYrNo + ".txt";
   fin.open(path);
@@ -66,6 +66,7 @@ bool loadSemester(semester& _load_, schoolYr _recentYr_) {
       inputADate(_load_.regis_start, fin);
       fin >> ws;
       inputADate(_load_.regis_end, fin);
+      _load_.list_of_course = nullptr;
     }
   } else
     return false;

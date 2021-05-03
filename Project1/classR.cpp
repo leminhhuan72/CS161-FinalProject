@@ -26,7 +26,7 @@ void inputAClass() {
   string path_dest = "./class/" + name + ".txt";
   ofstream f(path_dest, ios::app);
   ifstream f_2(path_dest);
-  f_2.get();
+  f_2 >> ws;
   if (f_2.eof()) {
     cout << "This is the new class, please input the number of students'\n";
 
@@ -50,7 +50,7 @@ void inputAClass() {
     ifstream fin;
     fin.open(path_src);
 
-    if (!fin.eof()) {
+    if (fin.is_open() && !file_is_empty(path_src)) {
       check = false;
       import_success = true;
       dest.member = new student[dest.num_of_students];
@@ -61,28 +61,20 @@ void inputAClass() {
         }
         fin >> dest.member[i].No;
         fin.get();
-        cout << dest.member[i].No << endl;
         getline(fin, dest.member[i].StudentID, ',');
-        cout << dest.member[i].StudentID << endl;
         getline(fin, dest.member[i].First_name, ',');
-        cout << dest.member[i].First_name << endl;
         getline(fin, dest.member[i].Last_name, ',');
-        cout << dest.member[i].Last_name << endl;
         fin >> dest.member[i].Gender;
         fin.get();
-        cout << dest.member[i].Gender << endl;
         fin >> dest.member[i].Date_of_Birth.date;
         fin.get();
-        cout << dest.member[i].Date_of_Birth.date << ' ';
         fin >> dest.member[i].Date_of_Birth.month;
         fin.get();
-        cout << dest.member[i].Date_of_Birth.month << ' ';
         fin >> dest.member[i].Date_of_Birth.year;
         fin.get();
-        cout << dest.member[i].Date_of_Birth.year << endl;
-        getline(fin, dest.member[i].SocialID, '\n');
-        cout << dest.member[i].SocialID << endl;
-        // 1,20125033,Le,Minh Huan ,1,24,05,2002,22150261
+        getline(fin, dest.member[i].SocialID, ',');
+        getline(fin, dest.member[i].userName);
+        // 1,20125033,Le,Minh Huan ,1,24,05,2002,22150261,lmhuan2020
       }
     } else {
       cout << "cant not open file \n";
@@ -96,17 +88,20 @@ void inputAClass() {
   }
   if (import_success)  //if the file is successfully imported
   {
+    cout << "IMPORT FILE SUCCESSFULLY!\n";
     for (int i = 0; i < dest.num_of_students; ++i) {
       f << dest.member[i].No << '\n';
       f << dest.member[i].StudentID << '\n';
       f << dest.member[i].First_name << ' ';
       f << dest.member[i].Last_name << '\n';
+      f << dest.member[i].Gender << '\n';
       outputADate(dest.member[i].Date_of_Birth, f);
+      f << endl;
       f << dest.member[i].SocialID << '\n';
+      f << dest.member[i].userName << '\n';
     }
   }
 
   f.close();
   f_2.close();
-  delete[] dest.member;
 }

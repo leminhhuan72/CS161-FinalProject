@@ -53,8 +53,12 @@ struct schoolYr {
   Date end_day;
 };
 void courseRegis(course*& totalCourse);
-bool storecoursesList(course* totalCourse, semester recent);
+bool storecoursesList(semester& recent);
 void createARegisSession(courseRegisSession& recent);
 bool loadCourses(semester& recent_sem);
-
+void viewListOfCourse(semester recent_sem);
+void outputACourseToScr(course a);
+void deleteACourse(course*& totalCourse);
+bool check1(string test);
+void updateCourseInfo(course*& totalCourse);
 #endif

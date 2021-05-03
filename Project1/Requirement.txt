@@ -18,11 +18,11 @@ He/she does not need to add 2nd year, 3rd year, or 4th-year students, because th
 There are 3 semesters in a school year: Semester 1 (Fall), Semester 2 (Summer), and Semester 3 (Autumn).
 At the beginning of a semester, an academic staff member will:
 [X]Create a semester: 1, 2, or 3, school year, start date, end date. Choose the school year that the newly created semester belongs to. The created semester will be the current / the default semester for all the below actions.
-Create a course registration session: start date, end date.
+[X]Create a course registration session: start date, end date.
 [X]Add a course to this semester: course id, course name, teacher name, number of credits, the maximum number of students  in the course (default 50), day of the week, and the session that the course will be performed (MON / TUE / WED / THU / FRI / SAT, S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)). A course will be taught in 2 sessions in a week.
-View list of courses.
-Update course information.
-Delete a course.
+[x]View list of courses.
+[x]Update course information.
+[x]Delete a course.
 
 When a course registration session is active, a student can:
 Log in to the system, of course.
@@ -42,7 +42,7 @@ At the end of a semester, an academic staff member can:
 Export list of students in a course to a CSV file
 Import the scoreboard of a course. A scoreboard will have at least the following columns: No, Student ID, Student Full Name, Total Mark, Final Mark, Midterm Mark, Other Mark. (An academic staff member will export the list of students in a course, send the CSV file to the teacher, the teacher will enter student results in this file, send it back to the staff, and then the staff will import the scoreboard to the system)
 View the scoreboard of a course.
-Update a student result.
+Update a student result. 
 View the scoreboard of a class, including final marks of all courses in the semester, GPA in this semester, and the overall GPA.
 
 When the scoreboard has been published (by the academic staff member), a student can:

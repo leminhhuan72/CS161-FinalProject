@@ -1,0 +1,13 @@
+checkSemester->createASemester->CourseRegis
+
+login -> check schoolYr - yes : -semester- yes:-> check course
+                         N0: create a school Yr
+
+        new file:   2021-2-cs162-mark.txt
+        new file:   2021-2-cs162-score.txt
+        new file:   2021-2-cs162-studentList.txt
+        new file:   gotoXY.h
+        new file:   scoreboard.cpp
+        new file:   scoreboard.h
+        new file:   scoreboard.h.gch
+        new file:   student.h.gch

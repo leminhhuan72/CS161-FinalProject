@@ -2,18 +2,18 @@
 
 void inputAStudent(student& a, ifstream& fin) {
   fin >> a.No;
+  fin >> ws;
   getline(fin, a.StudentID);
-  getline(fin, a.First_name);
+  getline(fin, a.First_name, ' ');
   getline(fin, a.Last_name);
   // getline(fin, a.sclass);
-  string gender;
-  getline(fin, gender);
-  if (gender == "male")
-    a.Gender = true;
-  else
-    a.Gender = false;
+
+  fin >> ws;
+  fin >> a.Gender;
+
   inputADate(a.Date_of_Birth, fin);
   getline(fin, a.SocialID);
+  getline(fin, a.userName);
 }
 void saveAStudent(student& a, ofstream& fout) {
   fout << "No:" << '\t' << a.No << endl;

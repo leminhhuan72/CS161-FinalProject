@@ -204,7 +204,7 @@ void deleteACourse(course*& totalCourse) {
     return;
   }
   while (cur->pNext != nullptr) {
-    if (cur->pNext->name == test || cur->pNext->fullname == test) {
+    if (cur->pNext->ID == test || cur->pNext->fullname == test) {
       course* tem = cur->pNext;
       cur->pNext = cur->pNext->pNext;
       delete tem;
@@ -239,12 +239,12 @@ void updateCourseInfo(course*& totalCourse) {
     return;
   }
   while (cur != nullptr) {
-    if (cur->name == name1 || cur->fullname == name1) {
+    if (cur->ID == name1 || cur->fullname == name1) {
       cout << "do you want to update name of course" << endl;
       getline(cin, test1);
       if (!check1(test1)) {
         cout << "input the name you want to change to: " << endl;
-        getline(cin, cur->name, '\n');
+        getline(cin, cur->ID, '\n');
       }
       cout << "do you want to update full name of course" << endl;
       getline(cin, test1);
@@ -258,12 +258,6 @@ void updateCourseInfo(course*& totalCourse) {
         cout << "input the classroom(ex:I41) you want to change to: " << endl;
         getline(cin, cur->classroom, '\n');
       }
-      cout << "do you want to update the class(ex:20ctt1) of course" << endl;
-      getline(cin, test1);
-      if (!check1(test1)) {
-        cout << "input the class you want to change to: " << endl;
-        getline(cin, cur->clas, '\n');
-      }
 
       cout << "do you want to update the information of lecturer" << endl;
       getline(cin, test1);
@@ -275,57 +269,31 @@ void updateCourseInfo(course*& totalCourse) {
         cout << "  Degree: " << endl;
         getline(cin, cur->lecturer.degree, '\n');
         cout << "  Gender: " << endl;
+        getline(cin, cur->lecturer.gender);
       }
       //nothing , rest
-      cout << "do you want to update the registration days of course" << endl;
-      getline(cin, test1);
-      if (!check1(test1)) {
-        cout << "Started Date(date): " << endl;
-        cin >> cur->startDate.date;
-        cout << "Started Date(month): " << endl;
-        cin >> cur->startDate.month;
-        cout << "Started Date(year): " << endl;
-        cin >> cur->startDate.year;
-        cout << "Finished Date(date): " << endl;
-        cin >> cur->finishDate.date;
-        cout << "Finished Date(month): " << endl;
-        cin >> cur->finishDate.month;
-        cout << "Finished Date(year): " << endl;
-        cin >> cur->finishDate.year;
-        cout << "Started Hour(hour): " << endl;
-        cin >> cur->startTime.hour;
-        cout << "Started Hour(minute): " << endl;
-        cin >> cur->startTime.minu;
-        cout << "Finished Hour(hour): " << endl;
-        cin >> cur->finishTime.hour;
-        cout << "Finished Hour(minute): " << endl;
-        cin >> cur->finishTime.minu;
-      }
       cout << "do you want to update the time that first session occurred?" << endl;
       getline(cin, test1);
       if (!check1(test1)) {
         cout << "First session performed on: " << endl;
-        cin.ignore();
-        getline(cin, cur->first.day, '\n');
-        cout << "What time that session occurred: " << endl;
-        cout << "Started Hour(hour): " << endl;
-        cin >> cur->first.time.hour;
-        cout << "Started Hour(minute): " << endl;
-        cin >> cur->first.time.minu;
+
+        getline(cin, cur->first.day_in_week);
+        cout << "Which shift that session occurred: " << endl;
+        cin >> ws;
+        cin >> cur->first.shift;
+        cin >> ws;
+
+        cout << "do you want to update the time that second session occurred?" << endl;
+        getline(cin, test1);
+        if (!check1(test1)) {
+          cout << "Second session performed on: " << endl;
+          getline(cin, cur->second.day_in_week);
+          cout << "Which shift that session occured" << endl;
+          cin >> ws;
+          cin >> cur->second.shift;
+          cin >> ws;
+        }
       }
-      cout << "do you want to update the time that second session occurred?" << endl;
-      getline(cin, test1);
-      if (!check1(test1)) {
-        cout << "Seconde session performed on: " << endl;
-        cin.ignore();
-        getline(cin, cur->second.day, '\n');
-        cout << "What time that session occurred: " << endl;
-        cout << "Started Hour(hour): " << endl;
-        cin >> cur->second.time.hour;
-        cout << "Started Hour(minute): " << endl;
-        cin >> cur->second.time.minu;
-      }
+      cur = cur->pNext;
     }
-    cur = cur->pNext;
   }
-}
