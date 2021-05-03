@@ -67,21 +67,32 @@ bool loadSchoolYr(schoolYr& _load_) {
 bool loadClass(schoolYr& recent) {
   for (int i = 0; i < recent.num_of_class; ++i) {
     ifstream fin;
-    fin.open("./class/" + recent.classLs[i].name + ".txt");
-    if (fin.is_open()) {
+    string path = "./class/" + recent.classLs[i].name + ".txt";
+    cout << path << endl;
+    fin.open(path);
+    if (fin.is_open() && !file_is_empty(path)) {
       string tmp;
       getline(fin, tmp);
       fin >> ws;
       fin >> recent.classLs[i].num_of_students;
       recent.classLs[i].member = new student[recent.classLs[i].num_of_students];
-      for (int j = 0; j < recent.classLs[i].num_of_students; ++j) {
+      int j = 0;
+      for (; j < recent.classLs[i].num_of_students; ++j) {
+        if (fin.eof()) break;
         inputAStudent(recent.classLs[i].member[j], fin);
       }
-      cout << "Load students data successfully!\n";
-      return true;
+      if (j < recent.classLs[i].num_of_students) {
+        cout << " 1  Load students of class " << recent.classLs[i].name << " data unsuccessfully!\n";
+        return false;
+      }
+      cout << "Load students of class " << recent.classLs[i].name << " data successfully!\n";
+    } else {
+      cout << " 2  Load students of class " << recent.classLs[i].name << " data unsuccessfully!\n";
+      return false;
     }
   }
-  return false;
+
+  return true;
 }
 bool canLoadClass(schoolYr& recent) {
   int size = recent.num_of_class;

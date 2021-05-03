@@ -11,4 +11,5 @@ struct classR {
 };
 void createAClass(classR& _init_);
 void inputAClass();
+void viewAClass(classR load);
 #endif

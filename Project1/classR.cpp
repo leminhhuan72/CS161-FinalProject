@@ -16,7 +16,7 @@ void createAClass(classR& _init_) {
   fout.close();
 }
 
-void inputAClass() {
+void inputAClass() {  //file csv
   classR dest;
   cout << "What is the name of class ? \n";
   string name;
@@ -92,7 +92,7 @@ void inputAClass() {
     for (int i = 0; i < dest.num_of_students; ++i) {
       f << dest.member[i].No << '\n';
       f << dest.member[i].StudentID << '\n';
-      f << dest.member[i].First_name << ' ';
+      f << dest.member[i].First_name << '\n';
       f << dest.member[i].Last_name << '\n';
       f << dest.member[i].Gender << '\n';
       outputADate(dest.member[i].Date_of_Birth, f);
@@ -104,4 +104,13 @@ void inputAClass() {
 
   f.close();
   f_2.close();
+}
+void viewAClass(classR load) {
+  cout << "No" << '\t' << "ST.ID" << '\t' << "FULL NAME" << '\t' << "SEX" << '\t' << "DOB" << '\t' << "SOCIAL.ID" << '\n';
+  int size = load.num_of_students;
+  string sex[2] = {"Female", "Male"};
+  for (int i = 0; i < size; ++i) {
+    cout << load.member[i].No << '\t' << load.member[i].StudentID << '\t' << load.member[i].First_name << ' ' << load.member[i].Last_name << '\t' << sex[load.member[i].Gender] << '\t';
+    cout << load.member[i].Date_of_Birth.date << ' ' << load.member[i].Date_of_Birth.month << ' ' << load.member[i].Date_of_Birth.year << '\t' << load.member[i].SocialID << endl;
+  }
 }

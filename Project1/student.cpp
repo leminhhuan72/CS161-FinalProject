@@ -4,16 +4,17 @@ void inputAStudent(student& a, ifstream& fin) {
   fin >> a.No;
   fin >> ws;
   getline(fin, a.StudentID);
-  getline(fin, a.First_name, ' ');
+  getline(fin, a.First_name);
   getline(fin, a.Last_name);
   // getline(fin, a.sclass);
 
   fin >> ws;
   fin >> a.Gender;
-
   inputADate(a.Date_of_Birth, fin);
+  fin >> ws;
   getline(fin, a.SocialID);
   getline(fin, a.userName);
+  fin >> ws;
 }
 void saveAStudent(student& a, ofstream& fout) {
   fout << "No:" << '\t' << a.No << endl;
@@ -91,9 +92,9 @@ bool changePass(string currentPass, string currentUser) {
     return true;
   }
 }
-bool studentLogin(string& currentUser) {
+bool studentLogin() {
   bool login = false;
-
+  string currentUser;
   string currentPass;
 
   while (!login) {
@@ -114,7 +115,7 @@ bool studentLogin(string& currentUser) {
     } else {
       string name1, pass1;
 
-      while (!fin.eof() && getline(fin, name1, ',') && getline(fin, pass1, ',') && !login) {
+      while (!fin.eof() && getline(fin, name1, ',') && getline(fin, pass1) && !login) {
         if (name1.compare(name) == 0 && pass1.compare(pass) == 0) {
           cout << "LOGIN SUCCESSFULLY!\n";
           login = true;
@@ -192,51 +193,46 @@ bool staffLogin(string& currentUser) {
   return true;
 }
 
-/*void enrollACourse(course* courseList,student thisStudent )
-{
-	course* cur = courseList ;
-	int count = 0 ;
-	cout<<"LIST OF COURSE:\n";
-	
-		int order = 0;
-	   while(cur)
-	     {
-		   cout<<++order << cur->name <<'\n';
-		   cur=cur->pNext;
-	    }
-	
-	int hook;
+/*void enrollACourse(course* list_of_course) {
+  course* cur = list_of_course;
+  int count = 0;
+  cout << "LIST OF COURSE:\n";
+  
 
-	while(count<6)
-	{
-		course* tmp = courseList;
-		 thisStudent.enrolledCourse = new course; 
-		 course* tmp_2 = thisStudent.enrolledCourse;
-		 course* tmp_3 = thisStudent.enrolledCourse;
-		cout<<"Which course do you want to enroll?'\n";
-		cin>>hook;
-		while(hook<=0 || hook > order)
-		{
-			cout<<"Please input a number between 0 and " <<order <<'\n';
-			cin>>hook;
-		}
-		  while(hook>0)
-		  {
-          tmp= tmp->pNext;
-          hook -- ; 
-		  }
-		tmp_2->pNext = new course ; 
-		tmp_2 = tmp_2->pNext;
-	
-		*tmp_2 =*tmp; 
-		tmp_2->pNext=nullptr;
-		thisStudent.enrolledCourse=thisStudent.enrolledCourse->pNext;
-		delete tmp_3;
-		
-		
-	}
-}*/
-/*
+  int order = 0;
+  while (cur) {
+    cout << ++order << cur->name << '\n';
+    cur = cur->pNext;
+  }
+
+  int hook;
+
+  while (count < 6) {
+    course* tmp = courseList;
+    thisStudent.enrolledCourse = new course;
+    course* tmp_2 = thisStudent.enrolledCourse;
+    course* tmp_3 = thisStudent.enrolledCourse;
+    cout << "Which course do you want to enroll?'\n";
+    cin >> hook;
+    while (hook <= 0 || hook > order) {
+      cout << "Please input a number between 0 and " << order << '\n';
+      cin >> hook;
+    }
+    while (hook > 0) {
+      tmp = tmp->pNext;
+      hook--;
+    }
+    tmp_2->pNext = new course;
+    tmp_2 = tmp_2->pNext;
+
+    *tmp_2 = *tmp;
+    tmp_2->pNext = nullptr;
+    thisStudent.enrolledCourse = thisStudent.enrolledCourse->pNext;
+    delete tmp_3;
+  }
+}
+* /
+    /*
 void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char namecourse[]) 
 {   
     char link[] ="-";

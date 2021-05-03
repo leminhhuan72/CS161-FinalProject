@@ -3,6 +3,7 @@ using namespace std;
 
 void courseRegis(course*& totalCourse)  // 7
 {
+  int count = 0;
   cout << "Please input 1 to registrate a course \n 2 to exit \n";
   int n;
   cin >> n;
@@ -11,6 +12,7 @@ void courseRegis(course*& totalCourse)  // 7
     cin >> n;
   }
   while (n == 1) {
+    count++;
     cout << "Please input the code of the new course(EX:CS162): ";
     string name;
     int count = 0;
@@ -119,12 +121,13 @@ void courseRegis(course*& totalCourse)  // 7
       cin >> n;
     }
   }
+  cout << "Have input " << count << " courses" << endl;
 }
-bool storecoursesList(course* totalCourse, semester recent) {
-  course* cur = totalCourse;
+bool storecoursesList(semester& recent) {
+  course* cur = recent.list_of_course;
   string path = "./course/" + recent._this_year->schoolYrNo + to_string(recent.No) + ".txt";
   ofstream fout;
-  fout.open(path, ios::app);
+  fout.open(path);
   if (!fout.is_open()) {
     cout << "can not open the text file to store the course information";
     return false;
@@ -161,10 +164,11 @@ bool loadCourses(semester& recent_sem) {
       course* cur = recent_sem.list_of_course;
       while (!fin.eof()) {
         cur->pNext = new course;
+        fin >> cur->pNext->num;
         fin >> cur->pNext->ID;
         fin >> ws;
         getline(fin, cur->pNext->fullname);
-        fin.get();
+        fin >> ws;
         fin >> cur->pNext->numOfCredits;
         fin >> cur->pNext->maxStudent;
         fin >> ws;
@@ -174,9 +178,11 @@ bool loadCourses(semester& recent_sem) {
         getline(fin, cur->pNext->first.day_in_week);
         fin >> ws;
         fin >> cur->pNext->first.shift;
+        fin >> ws;
         getline(fin, cur->pNext->second.day_in_week);
         fin >> ws;
         fin >> cur->pNext->second.shift;
+        fin >> ws;
         cur = cur->pNext;
         cur->pNext = nullptr;
       }
@@ -218,6 +224,24 @@ void deleteACourse(course*& totalCourse) {
   }
 }
 //task 10
+
+void viewListOfCourse(semester recent_sem) {
+  if (!recent_sem.list_of_course) {
+    cout << "There is no course!\n";
+    return;
+  } else {
+    cout << "No" << '\t' << "ID" << '\t' << "FullName          " << '\t' << "ROOM" << '\t' << "CREDITS" << '\t' << "LECTURER'S.NAME" << '\t' << "SESS 1" << ' ' << "SHIFT" << '\t' << "SESS 2" << ' ' << "SHIFT" << '\n';
+    while (recent_sem.list_of_course) {
+      outputACourseToScr(*recent_sem.list_of_course);
+      recent_sem.list_of_course = recent_sem.list_of_course->pNext;
+    }
+  }
+}
+void outputACourseToScr(course a) {
+  string shift[4] = {"7:30", "9:30", "13:30", "15:30"};
+  cout << a.num << '\t' << a.ID << '\t' << a.fullname << '\t' << a.classroom << '\t' << a.numOfCredits << '\t' << a.lecturer.name << "\t" << a.first.day_in_week << ' ' << shift[a.first.shift - 1] << '\t' << a.second.day_in_week << ' ' << shift[a.second.shift - 1] << endl;
+}
+
 bool check1(string test) {
   if (test == "no" || test == "No" || test == "NO" || test == "nO") return false;
   return true;
@@ -297,3 +321,51 @@ void updateCourseInfo(course*& totalCourse) {
       cur = cur->pNext;
     }
   }
+}
+void enrollACourse(student& recent, semester& recent_sem) {
+  cout << "HOW MANY COURSES DO YOU WANT TO ENROLL?\n";
+  int n;
+  cin >> n;
+  recent.courseNo = new int[n + 1];
+  recent.courseNo[0] = n;
+  bool scheduleCheck[6][4];
+  for (int i = 0; i < 6; ++i)
+    for (int j = 0; j < 4; ++j) {
+      scheduleCheck[i][j] = true;
+    }
+  viewListOfCourse(recent_sem);
+  for (int i = 1; i <= n; ++i) {
+    cout << "Input your number choice (course No) ?\n";
+    int tmp;
+    cin >> tmp;
+    bool check = true;
+    while (check) {
+      int week_1, week_2, shift_1, shift_2;
+      scheduleExtract(recent_sem, week_1, shift_2, week_2, shift_2, tmp);
+      if (scheduleCheck[week_1][shift_1] && scheduleCheck[week_2][shift_2]) {
+        recent.courseNo[i] = tmp;
+        scheduleCheck[week_1][shift_1] = scheduleCheck[week_2][shift_2] = false;
+        check = false;
+      } else {
+        cout << "THIS COURSE SESSION CONFLICTS TO ADD COURSES\n Plase make another choice\n";
+        cout << "Input your number choice (course No) ?\n";
+        cin >> tmp;
+      }
+    }
+  }
+}
+void scheduleExtract(semester& recent_sem, int& week_1, int& shift_1, int& week_2, int& shift_2, int courseNo) {
+  course* cur = recent_sem.list_of_course;
+  while (courseNo > 1) {
+    cur = cur->pNext;
+    if (!cur) cout << "There is no course corresponding to the course number\n";
+    --courseNo;
+  }
+  string day_in_week_ar[6] = {"MON", "TUE", "WED", "THU", "FRI", "SAT"};
+  for (int i = 0; i < 6; ++i) {
+    if (cur->first.day_in_week == day_in_week_ar[i]) week_1 = i;
+    if (cur->second.day_in_week == day_in_week_ar[i]) week_2 = i;
+  }
+  shift_1 = cur->first.shift;
+  shift_2 = cur->second.shift;
+}

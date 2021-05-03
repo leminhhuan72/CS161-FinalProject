@@ -7,7 +7,6 @@ struct accountInfo {
   string name;
   string pass;
 };
-
 struct student {
   int No;
   string StudentID;
@@ -17,6 +16,7 @@ struct student {
   Date Date_of_Birth;
   string SocialID;
   string userName;
+  int* courseNo;
   //string sclass; ?
   //input a student
 };
@@ -27,6 +27,6 @@ void outputAStudent(student& a, ofstream& fout);
 bool studentLogin(string& currentUser);
 bool staffLogin(string& currentUser);
 bool changePass(string currentPass, string newPass);
-//void enrollACourse(course* courseList,student thisStudent );
+//oid enrollACourse(course* list_of_course);
 void listOfStudentsInCourse(student*& pStudent, string nameyear, string namesemester, string namecourse, int& n);
 #endif
