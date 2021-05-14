@@ -92,9 +92,8 @@ bool changePass(string currentPass, string currentUser) {
     return true;
   }
 }
-bool studentLogin(string& userName) {
+bool studentLogin(string& currentUser) {
   bool login = false;
-  string currentUser;
   string currentPass;
 
   while (!login) {

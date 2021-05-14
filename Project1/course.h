@@ -43,6 +43,14 @@ struct semester {
   course* list_of_course;
   Date regis_start;
   Date regis_end;
+  ~semester() {
+    course* cur = this->list_of_course;
+    while (cur) {
+      course* tmp = cur;
+      cur = cur->pNext;
+      delete tmp;
+    }
+  }
 };
 struct schoolYr {
   string schoolYrNo;
@@ -69,5 +77,4 @@ void enrollACourse(student& recent, semester& recent_sem);
 void scheduleExtract(semester& recent_sem, int& week_1, int& shift_1, int& week_2, int& shift_2, int courseNo);
 int intCheck(int l, int r);
 void viewCourseStudent(semester& recent_sem);
-
 #endif

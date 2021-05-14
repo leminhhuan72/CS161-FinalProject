@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include "file.h"
+#include "scoreboard.h"
 using namespace std;
 
 struct Date {

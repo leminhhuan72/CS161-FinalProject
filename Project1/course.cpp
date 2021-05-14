@@ -438,19 +438,29 @@ void viewCourseStudent(semester& recent_sem) {
   ifstream fin;
   string path_2 = "./studentOfCourse/" + recent_sem._this_year->schoolYrNo + to_string(recent_sem.No) + to_string(n) + ".txt";
   fin.open(path_2);
+  if (!fin.is_open()) {
+    cout << "Can not open file\n";
+    return;
+  }
+  if (file_is_empty(path_2)) {
+    cout << "There is no student enrolled yet\n";
+    return;
+  }
+
   int order = 1;
   cout << setw(3) << left << "No";
   cout << setw(13) << "Student ID";
-  cout << setw(30) << "Full Name\n";
+  cout << setw(30) << "Full Name" << endl;
   while (!fin.eof()) {
     string ID;
     string firstName;
     string lastName;
     getline(fin, ID, ',');
     getline(fin, firstName, ',');
-    getline(fin, lastName);
+    getline(fin, lastName, '\n');
+    fin >> ws;
     cout << setw(3) << left << order++;
     cout << setw(13) << ID;
-    cout << setw(30) << firstName << ' ' << lastName << endl;
+    cout << setw(30) << firstName + " " + lastName << endl;
   }
 }

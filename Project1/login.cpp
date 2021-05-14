@@ -24,6 +24,7 @@ void login() {
     if (studentLogin(currentUser)) {
       student recent_stu;
       recent_stu.userName = currentUser;
+      cout << recent_stu.userName << endl;
       checkSchoolYr_st(recent);
       bool regisActive = true;
       bool scoreBoard = false;
@@ -43,7 +44,6 @@ void login() {
       } else {
         cout << "NOT ENOUGH INFORMATION ABOUT CLASSES AND STUDENTS\n\n";
       }
-      if (regisActive) cout << "SPARTAAA!" << endl;
       if (!loadCourses(recent_sem)) regisActive = false;
       menuChoice_st(recent, recent_sem, recent_stu, regisActive, scoreBoard, fullClass);
     }
@@ -198,6 +198,7 @@ void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse, bool fu
       cout << "7 TO VIEW CLASSES LISTS AND STUDENTS LIST\n";
     else
       cout << "8 TO ADD A CLASS CSV FILE\n";
+    cout << "9 TO VIEW LIST OF STUDENTS OF A COURSE\n";
     cout << "ANY OTHER KEYS TO EXIT\n";
     int n;
     cin >> n;
@@ -266,6 +267,10 @@ void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse, bool fu
       }
       case 8: {
         inputAClass();
+        break;
+      }
+      case 9: {
+        viewCourseStudent(recent_sem);
         break;
       }
       default:
