@@ -1,6 +1,0 @@
-4
-20125031 , pham viet hoang, 20ctt1 , 4 , 3.5 , 2 , 9.5 
-20125032 , truong viet hoang ,20ctt1, 4 , 3 , 2 , 9 
-20125033 , le minh huan , 20ctt1 , 4 , 3, 3 ,10  
-20125069 , tran lac viet , 20ctt1 , 3 , 3 ,3 , 9 
-

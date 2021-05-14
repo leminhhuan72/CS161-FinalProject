@@ -92,7 +92,7 @@ bool changePass(string currentPass, string currentUser) {
     return true;
   }
 }
-bool studentLogin() {
+bool studentLogin(string& userName) {
   bool login = false;
   string currentUser;
   string currentPass;
@@ -192,12 +192,11 @@ bool staffLogin(string& currentUser) {
   }
   return true;
 }
-
-/*void enrollACourse(course* list_of_course) {
+/*
+void enrollACourse(course* list_of_course) {
   course* cur = list_of_course;
   int count = 0;
   cout << "LIST OF COURSE:\n";
-  
 
   int order = 0;
   while (cur) {
@@ -230,9 +229,9 @@ bool staffLogin(string& currentUser) {
     thisStudent.enrolledCourse = thisStudent.enrolledCourse->pNext;
     delete tmp_3;
   }
-}
-* /
-    /*
+}*/
+
+/*
 void listOfStudentsInCourse(student*& pStudent, char nameyear[], char namesemester[], char namecourse[]) 
 {   
     char link[] ="-";

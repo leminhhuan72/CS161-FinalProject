@@ -48,10 +48,14 @@ struct schoolYr {
   string schoolYrNo;
   int num_of_class;
   classR* classLs;
-  semester* semester_of_this_year;
   Date start_day;
   Date end_day;
+
+  ~schoolYr() {
+    delete[] classLs;  //done !
+  }
 };
+bool checkCourseValid(semester& recent_sem, int courseNo);
 void courseRegis(course*& totalCourse);
 bool storecoursesList(semester& recent);
 void createARegisSession(courseRegisSession& recent);
@@ -63,4 +67,7 @@ bool check1(string test);
 void updateCourseInfo(course*& totalCourse);
 void enrollACourse(student& recent, semester& recent_sem);
 void scheduleExtract(semester& recent_sem, int& week_1, int& shift_1, int& week_2, int& shift_2, int courseNo);
+int intCheck(int l, int r);
+void viewCourseStudent(semester& recent_sem);
+
 #endif

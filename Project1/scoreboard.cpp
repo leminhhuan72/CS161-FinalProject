@@ -314,7 +314,7 @@ void importScoreboard(char nameyear[], char namesemester[], char namecourse[]) {
   if (!fout.is_open()) {
     cout << "can not open file ,please enter any character to return back";
     string u;
-    cin >> u;
+    getline(cin, u);
     return;
   } else {
     fout << count << endl;

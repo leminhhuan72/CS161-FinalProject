@@ -17,6 +17,9 @@ struct student {
   string SocialID;
   string userName;
   int* courseNo;
+  ~student() {
+    delete[] courseNo;
+  }
   //string sclass; ?
   //input a student
 };

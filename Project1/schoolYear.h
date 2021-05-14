@@ -7,4 +7,5 @@ void createSchoolYr(schoolYr& _init_);
 bool loadSchoolYr(schoolYr& _load_);
 bool loadClass(schoolYr& recent);
 bool canLoadClass(schoolYr& recent);
+bool loadSelfInfo(student& recent, schoolYr& recent_Yr);
 #endif

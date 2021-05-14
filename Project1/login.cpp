@@ -7,19 +7,15 @@ void login() {
        << "\n";
   for (int i = 0; i < 3; ++i)
     cout << '\t';
-  cout << "ARE YOU STUDENT OR STAFF ( Enter 1 if you are student , 2 if you are staff " << endl;
+  cout << "ARE YOU STUDENT OR STAFF ( Enter 1 if you are student , 2 if you are staff or 3 to exit ) " << endl;
   Date Now;
   string currentUser;
   getCurrentDate(Now);
   cout << "The current date is ";
   outputADateToScreen(Now);
-  int n;
-  cin >> n;
-  while (n != 1 && n != 2) {
-    cout << "Please input 1 if you are student or 2 if you are staff";
-    cin >> n;
-  }
-  cin.get();
+
+  int n = intCheck(1, 3);
+  if (n == 3) return;
   schoolYr recent;
   semester recent_sem;
   courseRegisSession recent_Session;
@@ -27,12 +23,29 @@ void login() {
   if (n == 1) {
     if (studentLogin(currentUser)) {
       student recent_stu;
+      recent_stu.userName = currentUser;
       checkSchoolYr_st(recent);
-      bool regisActive;
+      bool regisActive = true;
       bool scoreBoard = false;
+      bool fullClass;
       checkSemester_st(recent_sem, recent, Now, regisActive);
+      if (canLoadClass(recent)) {
+        fullClass = loadClass(recent);
+        if (fullClass) {
+          cout << "Load full classes successfully!\n\n";
+          if (loadSelfInfo(recent_stu, recent)) {
+            cout << "Load your information successfully!\n";
+          } else
+            cout << "Load your information unsuccessfully!\n";
+
+        } else
+          cout << "Load classes unsuccessfully\n\n";
+      } else {
+        cout << "NOT ENOUGH INFORMATION ABOUT CLASSES AND STUDENTS\n\n";
+      }
+      if (regisActive) cout << "SPARTAAA!" << endl;
       if (!loadCourses(recent_sem)) regisActive = false;
-      menuChoice_st(recent, recent_sem, recent_stu, regisActive, scoreBoard);
+      menuChoice_st(recent, recent_sem, recent_stu, regisActive, scoreBoard, fullClass);
     }
   } else if (n == 2) {
     if (staffLogin(currentUser)) {
@@ -43,9 +56,9 @@ void login() {
       if (canLoadClass(recent)) {
         fullClass = loadClass(recent);
         if (fullClass) {
-          cout << "load full classes successfully!\n\n";
+          cout << "Load full classes successfully!\n\n";
         } else
-          cout << "load classes unsuccessfully\n\n";
+          cout << "Load classes unsuccessfully\n\n";
       } else {
         cout << "NOT ENOUGH INFORMATION ABOUT CLASSES AND STUDENTS\n\n";
       }
@@ -107,6 +120,7 @@ void checkSemester(semester& recent_sem, schoolYr& recent) {
     outputADateToScreen(recent_sem.regis_start);
     cout << "The end date of the course registration session is ";
     outputADateToScreen(recent_sem.regis_end);
+    cout << "\n\n";
 
   } else {
     cout << "please input a new semester\n";
@@ -164,7 +178,7 @@ void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& re
       regisActive = true;
     } else {
       regisActive = false;
-      cout << "The course registration session is not active yet\n";
+      cout << "The course registration session is not active yet\n\n";
     }
   } else {
     cout << "There has been no information about this semester yet\n";
@@ -173,8 +187,6 @@ void checkSemester_st(semester& recent_sem, schoolYr& recent, Date Now, bool& re
 }
 void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse, bool fullClass, bool scoreBoard) {
   if (loadCourse) {
-    cout << "WHICH TASK YOU WANT TO DO ?\n";
-
     cout << "WHICH TASK YOU WANT TO DO ?\n";
     cout << "1 TO CREATE A NEW SCHOOL YEAR \n";
     cout << "2 TO CREATE A NEW SEMESTER \n";
@@ -280,8 +292,25 @@ void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse, bool fu
         break;
       }
       case 4: {
-        classR _init_;
-        createAClass(_init_);
+        cout << "WHICH CLASS YOU WANT TO VIEW STUDENTS LIST \n";
+        for (int i = 0; i < recent.num_of_class; ++i) {
+          cout << i + 1 << " " << recent.classLs[i].name << '\n';
+        }
+        int n;
+        cin >> n;
+        int n2 = 1;
+        while (n2 == 1) {
+          viewAClass(recent.classLs[n - 1]);
+          cout << "DO YOU WANT VIEW MORE CLASS?\n 1:yes \n other number : no)\n";
+          cin >> n2;
+          if (n2 == 1) {
+            cout << "WHICH CLASS YOU WANT TO VIEW STUDENTS LIST \n";
+            for (int i = 0; i < recent.num_of_class; ++i) {
+              cout << i + 1 << " " << recent.classLs[i].name << '\n';
+            }
+            cin >> n;
+          }
+        }
         break;
       }
       case 5: {
@@ -306,7 +335,7 @@ void menuChoice(schoolYr& recent, semester& recent_sem, bool loadCourse, bool fu
     }
   }
 }
-void menuChoice_st(schoolYr& recent, semester& recent_sem, student& recent_stu, bool regisActive, bool scoreBoard) {
+void menuChoice_st(schoolYr& recent, semester& recent_sem, student& recent_stu, bool regisActive, bool scoreBoard, bool fullClass) {
   if (regisActive) {
     bool check = true;
     while (check) {
@@ -363,13 +392,14 @@ void menuChoice_st(schoolYr& recent, semester& recent_sem, student& recent_stu, 
 }
 int intCheck(int l, int r) {
   char n;
-  cout << "input a number from" << l << " to " << r << endl;
+  cout << "input a number from " << l << " to " << r << endl;
   cin >> n;
   int check = (int)n;
   while (check < l + 48 || check > r + 48) {
-    cout << "input a number from" << l << " to " << r << endl;
-    cin.get(n);
+    cout << "input a number from " << l << " to " << r << endl;
+    cin >> n;
     check = (int)n;
   }
+  cin.get();
   return check - 48;
 }

@@ -65,7 +65,7 @@ void courseRegis(course*& totalCourse)  // 7
       inputADateFromConsole(cur->startDate, "Started Date");
       inputADateFromConsole(cur->finishDate, "Finished Date");
       cout << "First session performed on: " << endl;
-      cin.ignore();
+      cin >> ws;
       getline(cin, cur->first.day_in_week);
       cout << "Which shift that session occurred (1: 7:30, 2: 9:30 , 3: 1:30, 4: 15:30): " << endl;
       cin >> cur->first.shift;
@@ -100,7 +100,7 @@ void courseRegis(course*& totalCourse)  // 7
       inputADateFromConsole(cur->startDate, "Started Date");
       inputADateFromConsole(cur->finishDate, "Finished Date");
       cout << "First session performed on: " << endl;
-      cin.ignore();
+      cin >> ws;
       getline(cin, cur->first.day_in_week);
       cout << "Which shift that session occurred (1: 7:30, 2: 9:30 , 3: 1:30, 4: 15:30): " << endl;
       cin >> cur->first.shift;
@@ -127,12 +127,21 @@ bool storecoursesList(semester& recent) {
   course* cur = recent.list_of_course;
   string path = "./course/" + recent._this_year->schoolYrNo + to_string(recent.No) + ".txt";
   ofstream fout;
-  fout.open(path);
+  ofstream fout_2;
+  fout.open(path, ios::trunc);
   if (!fout.is_open()) {
     cout << "can not open the text file to store the course information";
     return false;
   } else {
     while (cur != nullptr) {
+      string path_2 = "./studentOfCourse/" + recent._this_year->schoolYrNo + to_string(recent.No) + to_string(cur->num) + ".txt";
+      fout_2.open(path_2);
+      if (fout_2.is_open()) {
+        cout << "File course " << cur->ID << " has been created\n";
+      } else
+        cout << "Can not open the student list of course file !\n\n";
+      fout_2.close();
+      fout << cur->num << endl;
       fout << cur->ID << endl;
       fout << cur->fullname << endl;
       fout << cur->numOfCredits << endl;
@@ -145,7 +154,7 @@ bool storecoursesList(semester& recent) {
       fout << cur->second.day_in_week << endl;
       fout << cur->second.shift << endl;
       cur = cur->pNext;
-      // total line: 11
+      // total line: 12
     }
   }
 
@@ -157,9 +166,11 @@ bool loadCourses(semester& recent_sem) {
   ifstream fin;
   fin.open(path);
   if (fin.is_open()) {
-    if (file_is_empty(path))
+    if (file_is_empty(path)) {
+      cout << "THE COURSES FILE IS EMPTY!\n\n";
       return false;
-    else {
+    } else {
+      cout << "Load all courses successfully!\n\n";
       recent_sem.list_of_course = new course;
       course* cur = recent_sem.list_of_course;
       while (!fin.eof()) {
@@ -190,8 +201,11 @@ bool loadCourses(semester& recent_sem) {
       recent_sem.list_of_course = recent_sem.list_of_course->pNext;
       delete tmp;
     }
-  } else
+  } else {
+    cout << "Can not open the courses file!\n\n";
     return false;
+  }
+
   fin.close();
   return true;
 }
@@ -199,8 +213,7 @@ bool loadCourses(semester& recent_sem) {
 void deleteACourse(course*& totalCourse) {
   cout << "please input the name or the fullname of the course you want to delete: " << endl;
   string test;
-  cin.ignore();
-  getline(cin, test, '\n');
+  getline(cin, test);
   course* cur = totalCourse;
   if (cur == nullptr) {
     cout << "No existed courses to delete, please add some courses" << endl;
@@ -209,18 +222,31 @@ void deleteACourse(course*& totalCourse) {
     cin >> u;
     return;
   }
-  while (cur->pNext != nullptr) {
-    if (cur->pNext->ID == test || cur->pNext->fullname == test) {
-      course* tem = cur->pNext;
-      cur->pNext = cur->pNext->pNext;
-      delete tem;
-      while (cur->pNext != nullptr) {
-        cur->pNext->num = cur->pNext->num - 1;
-        cur = cur->pNext;
-      }
-      return;
+  if (totalCourse->ID == test || totalCourse->fullname == test) {
+    course* tmp = totalCourse;
+    totalCourse = totalCourse->pNext;
+    delete tmp;
+    cur = totalCourse;
+    while (cur != nullptr) {
+      cur->num = cur->num - 1;
+      cur = cur->pNext;
     }
-    cur = cur->pNext;
+    cout << "DELETE COURSE " << test << " SUCCESSFULLY!\n\n";
+  } else {
+    while (cur->pNext != nullptr) {
+      if (cur->pNext->ID == test || cur->pNext->fullname == test) {
+        course* tem = cur->pNext;
+        cur->pNext = cur->pNext->pNext;
+        delete tem;
+        while (cur->pNext != nullptr) {
+          cur->pNext->num = cur->pNext->num - 1;
+          cur = cur->pNext;
+        }
+        cout << "DELETE COURSE " << test << " SUCCESSFULLY!\n\n";
+        return;
+      }
+      cur = cur->pNext;
+    }
   }
 }
 //task 10
@@ -338,14 +364,32 @@ void enrollACourse(student& recent, semester& recent_sem) {
     cout << "Input your number choice (course No) ?\n";
     int tmp;
     cin >> tmp;
+    while (!checkCourseValid(recent_sem, tmp)) {
+      cout << "The course if full now !";
+      cout << "Do you want to enroll another course (1: yes, 2: no)\n";
+      int n = intCheck(1, 2);
+      if (n == 2)
+        return;
+      else {
+        cout << "please input a number (course No)";
+        cin >> tmp;
+      }
+    }
     bool check = true;
     while (check) {
       int week_1, week_2, shift_1, shift_2;
       scheduleExtract(recent_sem, week_1, shift_2, week_2, shift_2, tmp);
+
       if (scheduleCheck[week_1][shift_1] && scheduleCheck[week_2][shift_2]) {
         recent.courseNo[i] = tmp;
         scheduleCheck[week_1][shift_1] = scheduleCheck[week_2][shift_2] = false;
         check = false;
+        ofstream fout;
+        string path_2 = "./studentOfCourse/" + recent_sem._this_year->schoolYrNo + to_string(recent_sem.No) + to_string(tmp) + ".txt";
+        fout.open(path_2, ios::app);
+        fout << recent.StudentID << ',' << recent.First_name << ',' << recent.Last_name << '\n';
+        fout.close();
+
       } else {
         cout << "THIS COURSE SESSION CONFLICTS TO ADD COURSES\n Plase make another choice\n";
         cout << "Input your number choice (course No) ?\n";
@@ -368,4 +412,45 @@ void scheduleExtract(semester& recent_sem, int& week_1, int& shift_1, int& week_
   }
   shift_1 = cur->first.shift;
   shift_2 = cur->second.shift;
+}
+bool checkCourseValid(semester& recent_sem, int courseNo) {
+  ifstream fin;
+  string path = "./studentOfCourse/" + recent_sem._this_year->schoolYrNo + to_string(recent_sem.No) + to_string(courseNo) + ".txt";
+  fin.open(path, ios::ate);
+  int position = fin.tellg();
+  course* cur = recent_sem.list_of_course;
+  while (courseNo > 1) {
+    cur = cur->pNext;
+    --courseNo;
+  }
+  if (position - 1 < cur->maxStudent) return true;
+  return false;
+}
+void viewCourseStudent(semester& recent_sem) {
+  cout << "WHICH COURSE YOU WANT TO VIEW STUDENTS LIST \n";
+  viewListOfCourse(recent_sem);
+  course* tmp = recent_sem.list_of_course;
+  while (tmp->pNext) {
+    tmp = tmp->pNext;
+  }
+  int numOfCourse = tmp->num;
+  int n = intCheck(1, numOfCourse);
+  ifstream fin;
+  string path_2 = "./studentOfCourse/" + recent_sem._this_year->schoolYrNo + to_string(recent_sem.No) + to_string(n) + ".txt";
+  fin.open(path_2);
+  int order = 1;
+  cout << setw(3) << left << "No";
+  cout << setw(13) << "Student ID";
+  cout << setw(30) << "Full Name\n";
+  while (!fin.eof()) {
+    string ID;
+    string firstName;
+    string lastName;
+    getline(fin, ID, ',');
+    getline(fin, firstName, ',');
+    getline(fin, lastName);
+    cout << setw(3) << left << order++;
+    cout << setw(13) << ID;
+    cout << setw(30) << firstName << ' ' << lastName << endl;
+  }
 }

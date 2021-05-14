@@ -51,7 +51,7 @@ void getCurrentDate(Date &Current) {
   char *date_time = ctime(&now);
 
   {
-    int i = 9;
+    int i = 8;
     while (date_time[i] != ' ') {
       Current.date = Current.date * 10 + (int)date_time[i] - 48;
       ++i;

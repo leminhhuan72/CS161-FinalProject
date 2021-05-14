@@ -106,11 +106,22 @@ void inputAClass() {  //file csv
   f_2.close();
 }
 void viewAClass(classR load) {
-  cout << "No" << '\t' << "ST.ID" << '\t' << "FULL NAME" << '\t' << "SEX" << '\t' << "DOB" << '\t' << "SOCIAL.ID" << '\n';
+  cout << setw(5) << left << "No";
+  cout << setw(12) << "ST.ID";
+  cout << setw(30) << "FULL NAME";
+  cout << setw(6) << "SEX";
+  cout << setw(13) << "DOB";
+  cout << setw(12) << "SOCIAL.ID" << '\n';
   int size = load.num_of_students;
   string sex[2] = {"Female", "Male"};
   for (int i = 0; i < size; ++i) {
-    cout << load.member[i].No << '\t' << load.member[i].StudentID << '\t' << load.member[i].First_name << ' ' << load.member[i].Last_name << '\t' << sex[load.member[i].Gender] << '\t';
-    cout << load.member[i].Date_of_Birth.date << ' ' << load.member[i].Date_of_Birth.month << ' ' << load.member[i].Date_of_Birth.year << '\t' << load.member[i].SocialID << endl;
+    cout << setw(5) << left << load.member[i].No;
+    cout << setw(12) << load.member[i].StudentID;
+    cout << setw(30) << load.member[i].First_name + " " + load.member[i].Last_name;
+    cout << setw(6) << sex[load.member[i].Gender];
+    cout << setw(3) << load.member[i].Date_of_Birth.date;
+    cout << setw(3) << load.member[i].Date_of_Birth.month;
+    cout << setw(7) << load.member[i].Date_of_Birth.year;
+    cout << setw(12) << load.member[i].SocialID << endl;
   }
 }

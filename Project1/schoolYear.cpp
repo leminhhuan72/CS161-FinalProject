@@ -37,7 +37,7 @@ void createSchoolYr(schoolYr& _init_) {
 bool loadSchoolYr(schoolYr& _load_) {
   ifstream fin;
   string path_1 = "./schoolYear/schoolYear.txt";
-  fin.open(path_1);
+  fin.open(path_1, ios::binary);
   if (fin.is_open()) {
     if (file_is_empty(path_1))
       return false;
@@ -102,6 +102,17 @@ bool canLoadClass(schoolYr& recent) {
     if (!fin.is_open()) return false;
     if (fin.tellg() > 3)
       return true;
+  }
+  return false;
+}
+bool loadSelfInfo(student& recent, schoolYr& recent_Yr) {
+  for (int i = 0; i < recent_Yr.num_of_class; ++i) {
+    for (int j = 0; j < recent_Yr.classLs[i].num_of_students; ++j) {
+      if (recent_Yr.classLs[i].member[j].userName == recent.userName) {
+        recent = recent_Yr.classLs[i].member[j];
+        return true;
+      }
+    }
   }
   return false;
 }

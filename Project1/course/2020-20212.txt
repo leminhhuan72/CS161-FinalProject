@@ -1,0 +1,36 @@
+1
+CS162
+Introduction to Computer Science 2
+4
+45
+I42
+dbtien
+Dinh Ba Tien
+MON
+1
+FRI
+1
+2
+PHY212
+General Physics 2 
+4
+45
+i42
+nhnha
+Nguyen Huu Nha
+THU
+3
+FRI
+3
+3
+BA001
+Introduction to Law 
+3
+90
+Hall I 
+abc
+Duong Kim The Nguyen
+WED 
+1
+WED
+2
